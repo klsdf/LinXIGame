@@ -10,12 +10,18 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
-        
+
+    }
+
+
+    public void OnOption()
+    {
+
     }
 }
