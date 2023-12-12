@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
@@ -23,6 +24,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+    private int moJIngNum = 0;
+
+
+    public TMP_Text text;
+    private void Awake()
+    {
+        //text = GetComponent<TMP_Text>();
+    }
+
+    private void ChangeMOjing(int num)
+    {
+        moJIngNum += num;
+        moJIngNum = Mathf.Clamp(moJIngNum,0,999999);
+        text.text = moJIngNum.ToString();
+    }
+
+    public void CostMojing(int num)
+    {
+        ChangeMOjing(-num);
+    }
+
+    public void GetMojing(int num)
+    {
+        ChangeMOjing(num);
+    }
 
 
     //观察者模式

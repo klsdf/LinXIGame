@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
     public float manhattanDistance = 1.0f; // 曼哈顿距离
     public Vector3 targetPosition; // 敌人的目标位置
 
+    public int mojing = 100;
+
 
     private Vector3 playerTargetPosition; // 主角的Transform
 
@@ -34,12 +36,12 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         
-        GameManager.Instance.OnPlayerMove += EnemyMove;
+        GameManager.Instance.OnPlayerMove += EnemyAction;
     }
 
-    private void EnemyMove(float playerCostTime)
+    private void EnemyAction(float playerCostTime)
     {
-        playerTargetPosition = GameManager.Instance.player.GetComponent<CharacterController>().targetPosition;
+       
 
         // 更新敌人的目标位置
         //targetPosition = player.position;
@@ -54,16 +56,23 @@ public class EnemyController : MonoBehaviour
 
             foreach (var hitCollider in hitColliders)
             {
-                if (hitCollider.CompareTag("Player"))
+                BattleBase battleBase = hitCollider.GetComponent<BattleBase>();
+                if (battleBase != null)
                 {
-                    EnemyAttack(hitCollider.gameObject);
-                    nowCostTime -= battleBase.costTime;
-                    return;
+                    if (hitCollider.GetComponent<BattleBase>().party == BattleParty.Player)
+                    {
+                        EnemyAttack(hitCollider.gameObject);
+                        nowCostTime -= battleBase.costTime;
+                        return;
+                    }
                 }
+
+
             }
 
             //敌人移动
             EnemyMove();
+            
 
             nowCostTime -= battleBase.costTime;
         }
@@ -73,12 +82,20 @@ public class EnemyController : MonoBehaviour
     //释放协程
     private void OnDestroy()
     {
-        GameManager.Instance.OnPlayerMove -= EnemyMove;
+        GameManager.Instance.GetMojing(mojing);
+        GameManager.Instance.OnPlayerMove -= EnemyAction;
+
+    
     }
 
 
 
 
+    //敌人没有行动
+    private void EnemyPass()
+    {
+        
+    }
 
     private void EnemyAttack(GameObject target)
     {
@@ -89,6 +106,11 @@ public class EnemyController : MonoBehaviour
 
     private void EnemyMove()
     {
+
+
+        //TODO
+        playerTargetPosition =GetComponentInChildren<EnvCheck>().enemy.transform.position;
+        //playerTargetPosition = GameManager.Instance.player.GetComponent<CharacterController>().targetPosition;
         Vector3 directionToPlayer = (playerTargetPosition - targetPosition).normalized;
         targetPosition = targetPosition + directionToPlayer;
     }

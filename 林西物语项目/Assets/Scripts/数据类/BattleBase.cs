@@ -5,9 +5,22 @@ using UnityEngine.UI;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
+/// 
+
+
+//队伍
+public enum BattleParty
+{ 
+    Player,//玩家阵营
+    Neutral,//完全中立
+    CapturedPlayer,//被抓的玩家阵营
+    Enemy//敌方阵营
+}
+
 public class BattleBase : MonoBehaviour
 {
    
+    public BattleParty party;
 
 
     public float maxHp;
