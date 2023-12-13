@@ -7,7 +7,15 @@ using UnityEngine;
 /// </summary>
 public class EnvCheck : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject firstEnemy;
+
+    public GameObject lastEnemy;
+
+    public GameObject clostestEnemy;
+
+
+    public List<GameObject> enemys;
+
 
     void Start()
     {
@@ -31,12 +39,32 @@ public class EnvCheck : MonoBehaviour
             }
             else
             {
-                enemy = collision.gameObject;
+                firstEnemy = collision.gameObject;
+                enemys.Add(collision.gameObject);
+
+
                 print("发现敌人");
             }
         }
         else
         { 
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //查看离开的对象是否在enemys中
+        if (enemys.Contains(collision.gameObject))
+        {
+            enemys.Remove(collision.gameObject);
+            if (enemys.Count > 0)
+            {
+                firstEnemy = enemys[0];
+            }
+            else
+            {
+                firstEnemy = null;
+            }
         }
     }
 }
