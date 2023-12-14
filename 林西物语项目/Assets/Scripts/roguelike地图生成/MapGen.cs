@@ -63,11 +63,6 @@ public class MapGen : MonoBehaviour
         }
 
     }
-
-
-
-
-
     //查看给定的sprite的size
     public void GetSpriteSize()
     {

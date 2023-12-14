@@ -9,7 +9,7 @@ public abstract  class EntityActionBase : MonoBehaviour
 {
     public float speed = 5.0f;
     public float manhattanDistance = 1.0f;
-    public Vector3 targetPosition;
+    public Vector3 targetPosition;//自己目前即将去的位置
 
 
     //战斗有关的数据

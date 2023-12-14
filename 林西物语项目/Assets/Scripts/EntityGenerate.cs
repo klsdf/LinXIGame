@@ -6,10 +6,6 @@ using UnityEngine;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-/// 
-
-
-
 
 public class EntityGenerate : MonoBehaviour
 {
@@ -32,6 +28,8 @@ public class EntityGenerate : MonoBehaviour
         SpawnObjects();
     }
 
+
+    //生成对象
     public void SpawnObjects()
     {
         foreach (Objinfo info in prefabs)

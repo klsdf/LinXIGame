@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    private int moJIngNum = 0;
+    private int moJIngNum = 10000;
 
 
     public TMP_Text text;
@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         text.text = moJIngNum.ToString();
     }
 
+    public int CheckMojingNum()
+    {
+        return moJIngNum;
+    }
     public void CostMojing(int num)
     {
         ChangeMOjing(-num);
