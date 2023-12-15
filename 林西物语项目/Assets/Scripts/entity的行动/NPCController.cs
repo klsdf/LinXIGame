@@ -2,8 +2,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
+public enum NPCType
+{
+    Warrior,//战士
+    Wizard,//法师
+    Archer,//弓箭手
+    Priest,//牧师
+    Thief,//盗贼
+    Merchant,//商人
+}
+
+
 public class NPCController : EntityActionBase
 {
+    public int NPCMoveSize=15;
+
+    public NPCType profession;//职业
+
 
 
     protected override void Action(float playerCostTime)
@@ -41,17 +56,52 @@ public class NPCController : EntityActionBase
     private void Attack(GameObject target)
     {
         //Debug.Log("攻击了玩家");
-        targetPosition = transform.position;
-        target.GetComponent<BattleBase>().ProcessAttack(battleBase);
+
+        if (profession == NPCType.Archer)
+        {
+            GameObject bullet = Resources.Load<GameObject>("子弹");
+            //创建一个bullet对象
+            GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
+            bulletObj.GetComponent<BulletController>().Init(target,100);
+
+
+        }
+        else
+        {
+            targetPosition = transform.position;
+            target.GetComponent<BattleBase>().ProcessAttack(battleBase);
+        }
+
     }
 
 
     //移动
     private void Move()
     {
+        Vector3 playerTempPosition = playerTargetPosition + new Vector3(Random.Range(-NPCMoveSize, NPCMoveSize), Random.Range(-NPCMoveSize, NPCMoveSize), 0);
         //集群力，默认以玩家为中心点
-        Vector3 directionToPlayer = (playerTargetPosition - targetPosition).normalized;
+        Vector3 directionToPlayer = (playerTempPosition - targetPosition).normalized;
         targetPosition = targetPosition + directionToPlayer;
+ 
+
+        //RaycastHit2D[] hitInfos = Physics2D.RaycastAll(transform.position, targetPosition, 2f);
+
+        //// 检查射线是否击中任何物体
+        //foreach (var hitInfo in hitInfos)
+        //{
+        //    if (hitInfo.collider != null && hitInfo.collider.gameObject != gameObject)
+        //    {
+        //        // 射线击中了一个物体，检查这个物体的tag是否为NPC或Player
+        //        if (hitInfo.collider.tag == "NPC" || hitInfo.collider.tag == "Player")
+        //        {
+        //            // 这个物体的tag为NPC或Player，将目标位置设置为自身位置
+        //            targetPosition = transform.position;
+        //            //Debug.Log("检测到自己人");
+        //        }
+        //    }
+        //}
+
+
     }
 
 
@@ -95,22 +145,8 @@ public class NPCController : EntityActionBase
     //    targetPosition = targetPosition + finalDirection;
 
 
-    //    //RaycastHit2D[] hitInfos = Physics2D.RaycastAll(transform.position, targetPosition, 2f);
 
-    //    //// 检查射线是否击中任何物体
-    //    //foreach (var hitInfo in hitInfos)
-    //    //{
-    //    //    if (hitInfo.collider != null && hitInfo.collider.gameObject !=gameObject)
-    //    //    {
-    //    //        // 射线击中了一个物体，检查这个物体的tag是否为NPC或Player
-    //    //        if (hitInfo.collider.tag == "NPC" || hitInfo.collider.tag == "Player")
-    //    //        {
-    //    //            // 这个物体的tag为NPC或Player，将目标位置设置为自身位置
-    //    //            targetPosition = transform.position;
-    //    //            //Debug.Log("检测到自己人");
-    //    //        }
-    //    //    }
-    //    //}
+
     //}
 
 

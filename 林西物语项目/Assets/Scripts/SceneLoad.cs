@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public class SceneLoad : MonoBehaviour
+public class SceneLoad : Singleton<SceneLoad>
 {
     public string sceneName; // 需要加载的场景名
     AsyncOperation asyncLoad;
 
     private void Start()
     {
-        LoadSceneAsync();
+        //LoadSceneAsync();
     }
     public void LoadSceneAsync()
     {

@@ -36,6 +36,7 @@ public class PlayerEnvCheck : MonoBehaviour
         {
             searchIcon.SetActive(false);
         }
+        collisionObj = null;
     }
 
 
@@ -53,7 +54,8 @@ public class PlayerEnvCheck : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                collisionObj.GetComponent<Shop>().Interactive();
+                if(collisionObj!=null)
+                    collisionObj.GetComponent<Shop>().Interactive();
             }
         }
     }

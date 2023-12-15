@@ -5,8 +5,9 @@ using UnityEngine;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public class UIController : MonoBehaviour
+public class UIController : Singleton<UIController>
 {
+
 
     void Start()
     {
@@ -22,6 +23,17 @@ public class UIController : MonoBehaviour
 
     public void OnOption()
     {
+        print("okkk");
+    }
 
+    public void OnStart()
+    {
+        SceneLoad.Instance.LoadSceneAsync();
+    }
+
+
+    public void OnQuit()
+    {
+        
     }
 }

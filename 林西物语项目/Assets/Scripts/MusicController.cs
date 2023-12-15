@@ -10,7 +10,9 @@ using UnityEngine.Audio;
 public class MusicController : MonoBehaviour
 {
     public AudioMixer mainMixer; // 指向你的MainMixer的引用
-    public float volume = 1.0f;
+
+    [Range(-80,10)]
+    public float volume = 0.0f;
 
     private void Update()
     {
@@ -19,7 +21,7 @@ public class MusicController : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        mainMixer.SetFloat("MasterVolume", volume);
+        mainMixer.SetFloat("Master", volume);
     }
 
     public void SetBGMVolume(float volume)

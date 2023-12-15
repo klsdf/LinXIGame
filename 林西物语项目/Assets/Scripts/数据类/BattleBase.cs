@@ -55,6 +55,18 @@ public class BattleBase : MonoBehaviour
         }
     }
 
+    public void GetDamage(int damage)
+    {
+
+        hp -= damage;
+
+        if (hp <= 0)
+        {
+            Dead();
+        }
+
+    }
+
     public void Dead() 
     {
 
