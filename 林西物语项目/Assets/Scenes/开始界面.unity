@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a15c8572ebfb3f43ab3877456edbd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
   sceneName: "\u6218\u6597\u6D4B\u8BD5"
 --- !u!4 &121473639
 Transform:
@@ -303,6 +304,54 @@ Transform:
   m_Father: {fileID: 1657339004}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &335425980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 335425981}
+  - component: {fileID: 335425982}
+  m_Layer: 0
+  m_Name: "\u5B58\u50A8\u7CFB\u7EDF"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &335425981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335425980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1657339004}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &335425982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335425980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bc945d990c52d47bf81cac39c5f97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingData:
+    masterVolume: 0
+    bgmVolume: 0
+    effectVolume: 0
 --- !u!1 &436150623
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +969,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMixer: {fileID: 24100000, guid: 59231210e6f98524d9b6b6c7eb7a3615, type: 2}
   volume: 0
-  masterSlider: {fileID: 0}
 --- !u!4 &595277859
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,6 +1626,7 @@ Transform:
   - {fileID: 595277859}
   - {fileID: 941687015}
   - {fileID: 121473639}
+  - {fileID: 335425981}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

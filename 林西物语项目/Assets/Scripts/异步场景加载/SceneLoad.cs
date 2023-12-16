@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
 public class SceneLoad : Singleton<SceneLoad>
 {
+    public Slider slider;
+
     public string sceneName; // 需要加载的场景名
     AsyncOperation asyncLoad;
 
@@ -17,7 +20,9 @@ public class SceneLoad : Singleton<SceneLoad>
     }
     public void LoadSceneAsync()
     {
-       
+       GameObject tempObj= Resources.Load<GameObject>("异步场景加载Canvas");
+        tempObj = Instantiate(tempObj);
+        slider = tempObj.GetComponentInChildren<Slider>();
         StartCoroutine(LoadScene());
     }
 
@@ -33,6 +38,8 @@ public class SceneLoad : Singleton<SceneLoad>
             // ��以在此处添加加载进度条的UI更新
             Debug.Log("Loading progress: " + (asyncLoad.progress * 100) + "%");
 
+
+            slider.value = asyncLoad.progress;
             // ��场景加载完成，等待用户点击屏幕
             if (asyncLoad.progress >= 0.9f)
             {
