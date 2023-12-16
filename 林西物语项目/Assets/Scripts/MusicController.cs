@@ -3,25 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+using UnityEngine.UI;
+
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
 
-public class MusicController : MonoBehaviour
+public class MusicController : Singleton<MusicController>
 {
+
     public AudioMixer mainMixer; // 指向你的MainMixer的引用
 
     [Range(-80,10)]
     public float volume = 0.0f;
 
-    private void Update()
+
+
+
+    private void Start()
     {
-        mainMixer.SetFloat("Master", volume);
+
     }
+
+
+
+
+
 
     public void SetMasterVolume(float volume)
     {
-        mainMixer.SetFloat("Master", volume);
+        SetVolume("Master", volume);
     }
 
     public void SetBGMVolume(float volume)
@@ -32,5 +43,12 @@ public class MusicController : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         mainMixer.SetFloat("SFXVolume", volume);
+    }
+
+
+    private void SetVolume(string name, float volume)
+    {
+        volume = Mathf.Clamp(volume,-80,20);
+        mainMixer.SetFloat(name, volume);
     }
 }
