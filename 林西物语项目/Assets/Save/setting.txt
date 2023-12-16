@@ -1,1 +1,1 @@
-{"masterVolume":120,"bgmVolume":0,"effectVolume":0}
+{"masterVolume":-80,"bgmVolume":0,"effectVolume":0}

@@ -14,36 +14,23 @@ public class MusicController : Singleton<MusicController>
 
     public AudioMixer mainMixer; // 指向你的MainMixer的引用
 
-    [Range(-80,10)]
-    public float volume = 0.0f;
-
-
-
-
-    private void Start()
-    {
-
-    }
-
-
-
-
-
-
     public void SetMasterVolume(float volume)
     {
         SetVolume("Master", volume);
+        SaveSystem.Instance.settingData.masterVolume = (int)volume;
     }
 
-    public void SetBGMVolume(float volume)
-    {
-        mainMixer.SetFloat("BGMVolume", volume);
-    }
+    //public void SetBGMVolume(float volume)
+    //{
+    //    mainMixer.SetFloat("BGMVolume", volume);
+    //    SaveSystem.Instance.settingData.bgmVolume = (int)volume;
+    //}
 
-    public void SetSFXVolume(float volume)
-    {
-        mainMixer.SetFloat("SFXVolume", volume);
-    }
+    //public void SetSFXVolume(float volume)
+    //{
+    //    mainMixer.SetFloat("SFXVolume", volume);
+    //    SaveSystem.Instance.settingData.effectVolume = (int)volume;
+    //}
 
 
     private void SetVolume(string name, float volume)

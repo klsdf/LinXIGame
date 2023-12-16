@@ -71,5 +71,9 @@ public class GameManager : MonoBehaviour
         //print("ok");
 
     }
+    private void Start()
+    {
+  
+    }
 
 }

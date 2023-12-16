@@ -19,13 +19,16 @@ public class SaveSystem : Singleton<SaveSystem>
     //存储文件的位置
     private string saveFilePath;
 
-    
+
+
+    private void Awake()
+    {
+        LoadSetting();
+    }
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         saveFilePath = Application.dataPath + "/Save";
-        SaveSetting();
     }
 
 
@@ -37,9 +40,24 @@ public class SaveSystem : Singleton<SaveSystem>
     /// </summary>
     public void SaveSetting()
     {
-        settingData.masterVolume = 120;
-
         SaveByJson(settingData, "/setting.txt");
+    }
+
+
+    public void LoadSetting()
+    {
+        if (File.Exists(saveFilePath + "/setting.txt"))
+        {
+            StreamReader sr = new StreamReader(saveFilePath + "/setting.txt");
+            string jsonStr = sr.ReadToEnd();
+            sr.Close();
+            settingData = JsonMapper.ToObject<SaveSettingData>(jsonStr);
+        }
+        else
+        {
+            settingData = new SaveSettingData();
+            print("存档文件不存在，但是自动创建了文件");
+        }
     }
 
 

@@ -15,4 +15,13 @@ public class SaveSettingData
     public int bgmVolume;
     public int effectVolume;
 
+
+    //默认的参数
+    public SaveSettingData()
+    {
+        masterVolume = 0;
+        bgmVolume = 0;
+        effectVolume = 0;
+    }
+
 }

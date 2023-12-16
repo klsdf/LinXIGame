@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - NPC
   - Shop
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -41,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Map
+    uniqueID: 2940811353
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Entity
+    uniqueID: 4160067933
+    locked: 0
+  - name: UI
+    uniqueID: 2768670609
     locked: 0

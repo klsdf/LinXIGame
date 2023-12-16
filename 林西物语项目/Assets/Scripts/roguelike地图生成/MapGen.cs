@@ -8,7 +8,7 @@ using UnityEngine;
 public class MapGen : MonoBehaviour
 {
 
-    public SpriteRenderer tree;
+    public SpriteRenderer map;
 
     public GameObject enemy;
 
@@ -33,10 +33,10 @@ public class MapGen : MonoBehaviour
 
     void Update()
     {
-        Bounds bounds = tree.sprite.bounds;
+        Bounds bounds = map.sprite.bounds;
 
 
-        Vector3 localScale = tree.transform.localScale;
+        Vector3 localScale = map.transform.localScale;
 
         bottomLeft = Vector3.Scale(bounds.min, localScale);
         topRight = Vector3.Scale(bounds.max, localScale);
@@ -51,10 +51,10 @@ public class MapGen : MonoBehaviour
 
 
         //世界坐标
-         worldBottomLeft = tree.transform.position + bottomLeft;
-         worldTopRight = tree.transform.position + topRight;
-         worldTopLeft = tree.transform.position + topLeft;
-         worldBottomRight = tree.transform.position + bottomRight;
+         worldBottomLeft = map.transform.position + bottomLeft;
+         worldTopRight = map.transform.position + topRight;
+         worldTopLeft = map.transform.position + topLeft;
+         worldBottomRight = map.transform.position + bottomRight;
 
         //当按下F键的时候调用 RandomGen();
         if (Input.GetKeyDown(KeyCode.F))
@@ -66,7 +66,7 @@ public class MapGen : MonoBehaviour
     //查看给定的sprite的size
     public void GetSpriteSize()
     {
-        Debug.Log(tree.bounds.size);
+        Debug.Log(map.bounds.size);
     }
 
     //在tree的四个坐标范围内随机生成enemy和weapon

@@ -107,7 +107,6 @@ public class UIController : Singleton<UIController>
 
     public void OnOption()
     {
-        print("okkk");
         PushPanel(PanelType.OptionPanel);
     }
 

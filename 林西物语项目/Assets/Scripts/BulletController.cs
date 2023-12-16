@@ -52,7 +52,7 @@ public class BulletController : MonoBehaviour
     {
         if (targetObj == null)
         {
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
             return;
         }
 

@@ -15,20 +15,20 @@ public class OptionPanel : BasePanel
         UIController.Instance.PopPanel(gameObject);
     }
 
-    
-
-  
-
-
+ 
 
     public override void OnOpen()
     {
+
+        SaveSystem.Instance.LoadSetting();
         masterSlider.onValueChanged.AddListener(MusicController.Instance.SetMasterVolume);
+        masterSlider.value = SaveSystem.Instance.settingData.masterVolume;
+        MusicController.Instance.SetMasterVolume(SaveSystem.Instance.settingData.masterVolume);
     }
 
     public override void OnClose()
     {
-        print("关闭");
+        SaveSystem.Instance.SaveSetting();
     }
 
 

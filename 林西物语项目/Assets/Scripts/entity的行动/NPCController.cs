@@ -190,41 +190,41 @@ public class NPCController : EntityActionBase
     }
 
 
-    private void  分离()
-    {
-        float speed = 2.0f;
-        float neighborDistance = 3.0f; // Boids will consider others within this radius as neighbors
-        float rotationSpeed = 4.0f;
-        // Implementing flocking behavior
-        // Find the center of all boids, find the average velocity of all boids, move boids towards the center and in the direction of average velocity
-        Vector3 center = Vector3.zero;
-        Vector3 velocity = Vector3.zero;
-        GameObject[] boids = GameObject.FindGameObjectsWithTag("Boid");
-        Vector3 separation = Vector3.zero;
+    //private void  分离()
+    //{
+    //    float speed = 2.0f;
+    //    float neighborDistance = 3.0f; // Boids will consider others within this radius as neighbors
+    //    float rotationSpeed = 4.0f;
+    //    // Implementing flocking behavior
+    //    // Find the center of all boids, find the average velocity of all boids, move boids towards the center and in the direction of average velocity
+    //    Vector3 center = Vector3.zero;
+    //    Vector3 velocity = Vector3.zero;
+    //    GameObject[] boids = GameObject.FindGameObjectsWithTag("Boid");
+    //    Vector3 separation = Vector3.zero;
 
-        for (int i = 0; i < boids.Length; i++)
-        {
-            if (boids[i] != this)
-            {
-                float distance = Vector3.Distance(boids[i].transform.position, this.transform.position);
-                if (distance < neighborDistance)
-                {
-                    // Compute a vector that points away from the neighbor.
-                    separation += (this.transform.position - boids[i].transform.position) / distance;
-                }
-            }
-        }
+    //    for (int i = 0; i < boids.Length; i++)
+    //    {
+    //        if (boids[i] != this)
+    //        {
+    //            float distance = Vector3.Distance(boids[i].transform.position, this.transform.position);
+    //            if (distance < neighborDistance)
+    //            {
+    //                // Compute a vector that points away from the neighbor.
+    //                separation += (this.transform.position - boids[i].transform.position) / distance;
+    //            }
+    //        }
+    //    }
 
-        if (boids.Length > 1)
-        {
-            center = center / (boids.Length - 1);
-            velocity = velocity / (boids.Length - 1);
+    //    if (boids.Length > 1)
+    //    {
+    //        center = center / (boids.Length - 1);
+    //        velocity = velocity / (boids.Length - 1);
 
-            Vector3 direction = (center + velocity + separation) - transform.position;
-            if (direction != Vector3.zero)
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
-        }
-    }
+    //        Vector3 direction = (center + velocity + separation) - transform.position;
+    //        if (direction != Vector3.zero)
+    //            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
+    //    }
+    //}
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
