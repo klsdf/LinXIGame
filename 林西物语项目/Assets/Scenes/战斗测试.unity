@@ -1280,10 +1280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8066fba61f25fa54aa356f5417a08fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textDialog: {fileID: 0}
+  textDialog: {fileID: 1247368097}
   textName: {fileID: 0}
   imageTatsue: {fileID: 0}
-  dialogArea: {fileID: 0}
+  dialogArea: {fileID: 1912288189}
   defaultText: "\u7ED3\u675F"
 --- !u!1 &1018270478
 GameObject:
@@ -1589,6 +1589,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1247368097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5460129618209657917, guid: f85a4e299bcc9c746ab8a0a7f131806e, type: 3}
+  m_PrefabInstance: {fileID: 2108827999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1249032326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1791,7 @@ MonoBehaviour:
   - obj: {fileID: 6848747746651068615, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
     num: 0
   - obj: {fileID: 6100418308877628906, guid: a2cc80846a29d324bbf54ab522e99027, type: 3}
-    num: 200
+    num: 50
   spawnValues: {x: 50, y: 40}
 --- !u!1 &1443551603
 GameObject:
@@ -2314,6 +2325,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1912288189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5460129616616963389, guid: f85a4e299bcc9c746ab8a0a7f131806e, type: 3}
+  m_PrefabInstance: {fileID: 2108827999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1929516149 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 904856879565905849, guid: 830c3c74274611c44b5e4caee93fba3a, type: 3}
@@ -2543,7 +2559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460129616616963389, guid: f85a4e299bcc9c746ab8a0a7f131806e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5460129616616963390, guid: f85a4e299bcc9c746ab8a0a7f131806e, type: 3}
       propertyPath: m_Pivot.x

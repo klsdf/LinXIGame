@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
@@ -20,11 +21,20 @@ public class 地图元素控制器 : MonoBehaviour
         {
             if (级别 == 当前缩放的级别)
             {
-                text.enabled = true;
+                FadeIn();
+               
             }
             else {
-                text.enabled = false;
+                FadeOut();
             }
         };
+    }
+    private void FadeOut()
+    {
+        text.DOFade(0f, 0.5f).OnComplete(() => text.enabled = false);
+    }
+    private void FadeIn()
+    {
+        text.DOFade(1f, 0.5f).OnComplete(() => text.enabled = true);
     }
 }

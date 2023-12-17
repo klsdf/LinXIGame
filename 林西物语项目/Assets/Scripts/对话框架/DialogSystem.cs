@@ -99,12 +99,12 @@ public class DialogSystem : MonoBehaviour
         //imageTatsue = GameObject.Find("人物立绘").GetComponent<Image>();
         //dialogArea = GameObject.Find("对话框");
 
-        DialogSystem.Instance.SetAndPlayStorys(new List<StoryScript>() {
-        new StoryScript("123"),
-        new StoryScript("你好"),
-        new StoryScript("你好"),
-        new StoryScript("test"),
-        });
+        //DialogSystem.Instance.SetAndPlayStorys(new List<StoryScript>() {
+        //new StoryScript("123"),
+        //new StoryScript("你好"),
+        //new StoryScript("你好"),
+        //new StoryScript("test"),
+        //});
 
     }
 
