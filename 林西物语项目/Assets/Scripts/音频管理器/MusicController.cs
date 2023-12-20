@@ -11,6 +11,11 @@ using UnityEngine.UI;
 
 public class MusicController : Singleton<MusicController>
 {
+    private void Start()
+    {
+       SaveSystem.Instance.LoadSetting();
+       SetMasterVolume(SaveSystem.Instance.settingData.masterVolume);
+    }
 
     public AudioMixer mainMixer; // 指向你的MainMixer的引用
 
@@ -35,6 +40,7 @@ public class MusicController : Singleton<MusicController>
 
     private void SetVolume(string name, float volume)
     {
+        print("音量"+ volume);
         volume = Mathf.Clamp(volume,-80,20);
         mainMixer.SetFloat(name, volume);
     }

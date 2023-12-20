@@ -32,7 +32,7 @@ public class SaveSystem : Singleton<SaveSystem>
     }
 
 
-    public SaveSettingData settingData = new SaveSettingData();//存储游戏设置的数据
+    public SaveSettingData settingData;//存储游戏设置的数据
 
 
     /// <summary>
