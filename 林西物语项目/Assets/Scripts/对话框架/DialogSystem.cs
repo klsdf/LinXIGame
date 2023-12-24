@@ -8,60 +8,59 @@ using UnityEngine;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
+/// 
+
+public enum Character
+{
+    李二狗,
+    秦飞羽,
+    林千叶,
+    月千秋
+}
 
 public class StoryScript
 {
     public string text;//文本
-    public string nameText = "无";//姓名
+    public string nameText = "";//姓名
+    public string tatsueName = "";//立绘名字
     public Action function;
 
 
 
+    //public StoryScript()
     public StoryScript(string text)
     {
         this.text = text;
     }
 
-    public StoryScript(string text, string nameText)
+    public StoryScript(string text, string nameText):this(text)
     {
-        this.text = text;
         this.nameText = nameText;
     }
-    public StoryScript(string text, string nameText, Action function)
+    public StoryScript(string text, string nameText, Action function):this(text,nameText)
     {
-        this.text = text;
-        this.nameText = nameText;
+        this.function = function;
+    }
+    public StoryScript(string text, Character character) : this(text)
+    {
+        this.nameText = character.ToString();
+    }
+    public StoryScript(string text, Character character, Action function) : this(text,character)
+    {
         this.function = function;
     }
 
 
-    public StoryScript(string text, Action function)
+    public StoryScript(string text, Action function):this(text)
     {
-        this.text = text;
         this.function = function;
     }
 }
 
 
-public class DialogSystem : MonoBehaviour
+public class DialogSystem : Singleton<DialogSystem>
 {
-    //单例模式
-    private static DialogSystem instance;
-
-    public static DialogSystem Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<DialogSystem>();
-            }
-            return instance;
-        }
-    }
-
-
-
+  
 
     //UI部分
     [Header("对话文本区域")]
@@ -99,12 +98,6 @@ public class DialogSystem : MonoBehaviour
         //imageTatsue = GameObject.Find("人物立绘").GetComponent<Image>();
         //dialogArea = GameObject.Find("对话框");
 
-        //DialogSystem.Instance.SetAndPlayStorys(new List<StoryScript>() {
-        //new StoryScript("123"),
-        //new StoryScript("你好"),
-        //new StoryScript("你好"),
-        //new StoryScript("test"),
-        //});
 
     }
 
@@ -142,6 +135,13 @@ public class DialogSystem : MonoBehaviour
         {
             textDialog.text = tempText;
         }
+
+        string name = storys[storyPointer].nameText;
+        if (textDialog != null)
+        {
+            textName.text = name;
+        }
+
 
         //执行函数
         if (storys[storyPointer].function != null)

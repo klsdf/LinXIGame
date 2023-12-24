@@ -17,7 +17,33 @@ public class NPCController : EntityActionBase
 
     public NPCType profession;//职业
 
+    public bool isPlayerControl = false;
+    private bool isClick = false;//是否正在点击
 
+
+    private Vector3 playerTargetPosition; // 主角的Transform
+
+    public Vector3 CommandTargetPosition; // 控制的目标位置
+
+    private LineRenderer lineRenderer;
+    protected override void Start()
+    {
+        base.Start();
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startWidth = 1f; // 线的起始宽度
+        lineRenderer.endWidth = 1f; // 线的结束宽度
+        lineRenderer.startColor = Color.white; // 线的起始颜色
+        lineRenderer.endColor = Color.red; // 线的结束颜色
+    }
+
+    private void OnMouseDown()
+    {
+        //GameManager.Instance.ChangeMode(gameObject);
+        isPlayerControl = true;
+        isClick = true;
+
+
+    }
 
     protected override void Action(float playerCostTime)
     {
@@ -49,7 +75,6 @@ public class NPCController : EntityActionBase
         }
     }
 
-    private Vector3 playerTargetPosition; // 主角的Transform
 
     private void Attack(GameObject target)
     {
@@ -61,14 +86,14 @@ public class NPCController : EntityActionBase
             //创建一个bullet对象
             GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
             bulletObj.GetComponent<BulletController>().Init(target,100);
-
-
         }
         else
         {
-            targetPosition = transform.position;
+            
             target.GetComponent<BattleBase>().ProcessAttack(battleBase);
         }
+
+        targetPosition = transform.position;
 
     }
 
@@ -76,32 +101,64 @@ public class NPCController : EntityActionBase
     //移动
     private void Move()
     {
+
+
+        if (isPlayerControl == true)
+        {
+            //集群力，默认以玩家为中心点
+            Vector3 direction = (CommandTargetPosition - targetPosition).normalized;
+            targetPosition = targetPosition + direction;
+
+            if (Vector2.Distance(CommandTargetPosition, transform.position) < 1.0f)
+            {
+                isPlayerControl = false;
+            }
+
+
+            return;
+        }
+
+     
+
         Vector3 playerTempPosition = playerTargetPosition + new Vector3(Random.Range(-NPCMoveSize, NPCMoveSize), Random.Range(-NPCMoveSize, NPCMoveSize), 0);
         //集群力，默认以玩家为中心点
         Vector3 directionToPlayer = (playerTempPosition - targetPosition).normalized;
         targetPosition = targetPosition + directionToPlayer;
- 
-
-        //RaycastHit2D[] hitInfos = Physics2D.RaycastAll(transform.position, targetPosition, 2f);
-
-        //// 检查射线是否击中任何物体
-        //foreach (var hitInfo in hitInfos)
-        //{
-        //    if (hitInfo.collider != null && hitInfo.collider.gameObject != gameObject)
-        //    {
-        //        // 射线击中了一个物体，检查这个物体的tag是否为NPC或Player
-        //        if (hitInfo.collider.tag == "NPC" || hitInfo.collider.tag == "Player")
-        //        {
-        //            // 这个物体的tag为NPC或Player，将目标位置设置为自身位置
-        //            targetPosition = transform.position;
-        //            //Debug.Log("检测到自己人");
-        //        }
-        //    }
-        //}
-
-
     }
 
+    protected override void Update()
+    {
+
+        if (isClick == true)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Vector3 mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+                if (hit.collider != null)
+                {
+                    CommandTargetPosition = hit.point;
+                }
+
+                isClick = false;
+                isPlayerControl = true;
+            }
+        }
+        if (isPlayerControl == true)
+        {
+            lineRenderer.positionCount = 2; // 设置线的顶点数量
+            lineRenderer.SetPosition(0, transform.position); // 设置线的起点
+            lineRenderer.SetPosition(1, CommandTargetPosition); // 设置线的终点
+        }
+        else
+        {
+            lineRenderer.positionCount = 0;
+        }
+        base.Update();
+
+    }
 
     //private void Move()
     //{

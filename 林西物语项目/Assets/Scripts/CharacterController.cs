@@ -80,13 +80,15 @@ public class CharacterController : MonoBehaviour
                 boxSize = new Vector2(2,1);
                 RaycastHit2D[] hits = Physics2D.BoxCastAll(boxCenter, boxSize, angle, direction, distance);
 
+                GameObject hitsObj;
                 for (int i=0;i<hits.Length;i++)
                 {
+                    hitsObj = hits[i].collider.gameObject;
                     //如果前进的方向有敌人
-                    if (hits[i].collider.gameObject != gameObject  )
+                    if (hitsObj != gameObject  )
                     {
 
-                        if (hits[i].collider.gameObject.CompareTag("Enemy"))
+                        if (hitsObj.CompareTag("Enemy") || hitsObj.CompareTag("Tree"))
                         {
                             //玩家攻击
                             if (canAttack == true)
@@ -102,14 +104,7 @@ public class CharacterController : MonoBehaviour
                             {
                                 return;
                             }
-                        } else if (hits[i].collider.gameObject.CompareTag("Tree"))
-                        {
-                            print(hits[i].collider.gameObject.name);
-                            return;
-                        }
-                        
-                        
-
+                        } 
                     }
                 }
 

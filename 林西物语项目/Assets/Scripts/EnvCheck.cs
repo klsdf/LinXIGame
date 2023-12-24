@@ -32,18 +32,23 @@ public class EnvCheck : MonoBehaviour
         var parentBattleBase = transform.parent.GetComponent<BattleBase>();
         if (collisionBattleBase != null && parentBattleBase != null)
         {
+            //不检测自然
+            if (collisionBattleBase.party == BattleParty.Neutral)
+            {
+                return;
+            }
 
             if (collisionBattleBase.party == parentBattleBase.party)
             {
-                print("发现自己人");
+                //print("发现自己人");
             }
-            else
+            else 
             {
                 firstEnemy = collision.gameObject;
                 enemys.Add(collision.gameObject);
 
 
-                print("发现敌人");
+                //print("发现敌人");
             }
         }
         else

@@ -28,8 +28,6 @@ public class EnemyController : EntityActionBase
                         return;
                     }
                 }
-
-
             }
 
             //敌人移动
@@ -52,6 +50,20 @@ public class EnemyController : EntityActionBase
     {
         base.OnDead();
         GameManager.Instance.GetMojing(mojing);
+        bool hasBlood =  Util.TryTrigger(0.5f, () =>
+        {
+            Instantiate(Resources.Load<GameObject>("HP球"), transform.position, Quaternion.identity);
+        });
+        if (!hasBlood)
+        {
+            Util.TryTrigger(0.5f, () =>
+            {
+                Instantiate(Resources.Load<GameObject>("金币"), transform.position, Quaternion.identity);
+            });
+            
+        }
+
+
     }
 
 
@@ -65,7 +77,7 @@ public class EnemyController : EntityActionBase
 
     private void EnemyAttack(GameObject target)
     {
-        //Debug.Log("攻击了玩家");
+        Debug.Log("攻击了玩家");
         targetPosition = transform.position;
         target.GetComponent<BattleBase>().ProcessAttack(battleBase);
     }

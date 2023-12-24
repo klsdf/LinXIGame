@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,16 +29,17 @@ public class BattleBase : MonoBehaviour
     public float defense;
 
 
-    public float hp;
+    [SerializeField]
+    private float hp;
 
     public float costTime;//每进行一次行动的耗时
 
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
 
 
   
-    public Slider slider;
+    private Slider slider;
 
     //被敌人攻击
     public void ProcessAttack(BattleBase enemyData) 
@@ -54,6 +56,13 @@ public class BattleBase : MonoBehaviour
             Dead();
         }
     }
+
+    //回血
+    public void Recover(int recoverHP)
+    { 
+        hp = Mathf.Clamp(hp+ recoverHP, 0, maxHp);
+    }
+
 
     public void GetDamage(int damage)
     {

@@ -6,25 +6,8 @@ using TMPro;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-
-    //单例模式
-    static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameManager>();
-
-            }
-            return instance;
-        }
-    }
-
-
 
     private int moJIngNum = 10000;
 
@@ -71,10 +54,44 @@ public class GameManager : MonoBehaviour
         //print("ok");
 
     }
+
+
+    /// <summary>
+    /// 进入操作某个游戏对象的模式
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// 
+    public bool isControlMode = false;
+    public GameObject controlObj;
+
+    public void ChangeMode(GameObject gameObject)
+    {
+        print("ok控制模式");
+        isControlMode = true;
+        controlObj = gameObject;
+    }
+
+    public void EndMode()
+    {
+        //isControlMode = false;
+    }
+
+
     private void Start()
     {
 
 
+    }
+
+    private void Update()
+    {
+        if (isControlMode)
+        {
+           
+
+            
+
+        }
     }
 
 }

@@ -23,7 +23,7 @@ public abstract  class EntityActionBase : MonoBehaviour
         targetPosition = transform.position;
     }
 
-    void Start()
+    protected virtual void Start()
     {
         GameManager.Instance.OnPlayerMove += Action;
     }
@@ -41,7 +41,7 @@ public abstract  class EntityActionBase : MonoBehaviour
      
     }
     protected abstract void Action(float playerCostTime);
-    void Update()
+    protected virtual void Update()
     {
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
