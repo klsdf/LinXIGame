@@ -270,8 +270,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6848747746651068671}
   - component: {fileID: 6848747746651068608}
+  - component: {fileID: 676045943372338302}
   - component: {fileID: 6848747746651068670}
-  - component: {fileID: 6848747746651068610}
   - component: {fileID: 6848747746651068611}
   - component: {fileID: 6848747746651068612}
   - component: {fileID: 6848747746651068613}
@@ -354,6 +354,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &676045943372338302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848747746651068615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aef1d161d0f61546b6a13e9e13f400e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party: 0
+  maxHp: 0
+  attack: 0
+  defense: 0
+  hp: 0
+  costTime: 1
 --- !u!114 &6848747746651068670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,26 +392,6 @@ MonoBehaviour:
   profession: 2
   isPlayerControl: 0
   CommandTargetPosition: {x: 0, y: 0, z: 0}
---- !u!114 &6848747746651068610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848747746651068615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee2a76d21fd13f64abe26e2cf593f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  party: 0
-  maxHp: 500
-  attack: 5
-  defense: 1
-  hp: 0
-  costTime: 1
-  audioSource: {fileID: 0}
-  slider: {fileID: 0}
 --- !u!61 &6848747746651068611
 BoxCollider2D:
   m_ObjectHideFlags: 0

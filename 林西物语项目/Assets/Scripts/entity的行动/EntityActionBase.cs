@@ -31,11 +31,19 @@ public abstract  class EntityActionBase : MonoBehaviour
 
     protected virtual void OnDead()
     {
-        GameManager.Instance.OnPlayerMove -= Action;
+        //关闭游戏的时候有可能GameManager先被destory了，导致会变成null
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPlayerMove -= Action;
+        }
+    
+       
     }
      //释放协程
     private void OnDestroy()
     {
+        
+ 
         OnDead();
        
      

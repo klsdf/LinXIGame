@@ -9,7 +9,8 @@ using TMPro;
 public class GameManager : Singleton<GameManager>
 {
 
-    private int moJIngNum = 10000;
+    [SerializeField]
+    private int moJIngNum;
 
 
     public TMP_Text text;
@@ -50,9 +51,6 @@ public class GameManager : Singleton<GameManager>
     {
         float playerCostTime = player.GetComponent<BattleBase>().costTime;
         OnPlayerMove?.Invoke(playerCostTime);
-
-        //print("ok");
-
     }
 
 
@@ -61,37 +59,37 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     /// <param name="gameObject"></param>
     /// 
-    public bool isControlMode = false;
-    public GameObject controlObj;
+    //public bool isControlMode = false;
+    //public GameObject controlObj;
 
-    public void ChangeMode(GameObject gameObject)
-    {
-        print("ok控制模式");
-        isControlMode = true;
-        controlObj = gameObject;
-    }
+    //public void ChangeMode(GameObject gameObject)
+    //{
+    //    print("ok控制模式");
+    //    isControlMode = true;
+    //    controlObj = gameObject;
+    //}
 
-    public void EndMode()
-    {
-        //isControlMode = false;
-    }
-
-
-    private void Start()
-    {
+    //public void EndMode()
+    //{
+    //    //isControlMode = false;
+    //}
 
 
-    }
+    //private void Start()
+    //{
 
-    private void Update()
-    {
-        if (isControlMode)
-        {
+
+    //}
+
+    //private void Update()
+    //{
+    //    if (isControlMode)
+    //    {
            
 
             
 
-        }
-    }
+    //    }
+    //}
 
 }

@@ -5,26 +5,11 @@ using UnityEngine;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public class 金币球 : MonoBehaviour
+public class 金币球 : 可捡拾entity
 {
-
-    void Start()
+    public int 金币值;
+    protected override void BePickedUP(Collider2D collision)
     {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") || collision.CompareTag("NPC"))
-        {
-           GameManager.Instance.GetMojing(10);
-            Destroy(gameObject);
-        }
+        GameManager.Instance.GetMojing(金币值);
     }
 }

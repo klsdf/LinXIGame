@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6100418308877628905}
   - component: {fileID: 1945762595356776676}
   - component: {fileID: 172608845}
-  - component: {fileID: -4904527744790756247}
   - component: {fileID: 1920718187}
   - component: {fileID: 1920718188}
+  - component: {fileID: 8717115149727406836}
   m_Layer: 0
   m_Name: "\u6811\u6728"
   m_TagString: Tree
@@ -137,24 +137,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-4904527744790756247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100418308877628906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee2a76d21fd13f64abe26e2cf593f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  party: 1
-  maxHp: 50
-  attack: 0
-  defense: 1
-  hp: 0
-  costTime: 0
 --- !u!82 &1920718187
 AudioSource:
   m_ObjectHideFlags: 0
@@ -347,6 +329,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8717115149727406836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100418308877628906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80352125fb1af1c449d288b65d17361f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party: 0
+  maxHp: 0
+  attack: 0
+  defense: 0
+  hp: 0
+  costTime: 1
 --- !u!1001 &361793696
 PrefabInstance:
   m_ObjectHideFlags: 0

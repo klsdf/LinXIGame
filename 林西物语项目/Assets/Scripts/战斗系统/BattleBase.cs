@@ -9,16 +9,7 @@ using UnityEngine.UI;
 /// 
 
 
-//队伍
-public enum BattleParty
-{ 
-    Player,//玩家阵营
-    Neutral,//完全中立
-    CapturedPlayer,//被抓的玩家阵营
-    Enemy//敌方阵营
-}
-
-public class BattleBase : MonoBehaviour
+public abstract class BattleBase : MonoBehaviour
 {
    
     public BattleParty party;
@@ -32,12 +23,9 @@ public class BattleBase : MonoBehaviour
     [SerializeField]
     private float hp;
 
-    public float costTime;//每进行一次行动的耗时
+    public float costTime = 1;//每进行一次行动的耗时
 
     private AudioSource audioSource;
-
-
-
   
     private Slider slider;
 
@@ -49,7 +37,6 @@ public class BattleBase : MonoBehaviour
         audioSource.Play();
         slider.maxValue = maxHp;
         slider.value = hp;
-
 
         if (hp <= 0)
         {
@@ -76,16 +63,11 @@ public class BattleBase : MonoBehaviour
 
     }
 
-    public void Dead() 
+    public virtual  void Dead() 
     {
 
         Destroy(gameObject);
     }
-
-  
-
-
-
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -95,9 +77,6 @@ public class BattleBase : MonoBehaviour
         {
             slider = test;
         }
-
-       
-
     }
 
 

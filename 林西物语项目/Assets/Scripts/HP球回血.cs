@@ -5,25 +5,11 @@ using UnityEngine;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public class HP球回血 : MonoBehaviour
+public class HP球回血 : 可捡拾entity
 {
-
-    void Start()
+    public int 回血值;
+    protected override void BePickedUP(Collider2D collision)
     {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") || collision.CompareTag("NPC"))
-        {
-            collision.GetComponent<BattleBase>().Recover(100);
-            Destroy(gameObject);
-        }
+        collision.GetComponent<BattleBase>().Recover(回血值);
     }
 }

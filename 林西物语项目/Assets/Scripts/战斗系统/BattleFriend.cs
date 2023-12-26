@@ -5,10 +5,17 @@ using UnityEngine;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public enum GameParty
+public class BattleFriend : BattleBase
 {
-    主角团,
-    敌人,
-    中立
 
+    void Start()
+    {
+        
+    }
+
+
+    void Update()
+    {
+        
+    }
 }

@@ -25,6 +25,8 @@ public class NPCController : EntityActionBase
 
     public Vector3 CommandTargetPosition; // 控制的目标位置
 
+    private EnvCheck envCheck;
+
     private LineRenderer lineRenderer;
     protected override void Start()
     {
@@ -34,6 +36,8 @@ public class NPCController : EntityActionBase
         lineRenderer.endWidth = 1f; // 线的结束宽度
         lineRenderer.startColor = Color.white; // 线的起始颜色
         lineRenderer.endColor = Color.red; // 线的结束颜色
+
+        envCheck = GetComponentInChildren<EnvCheck>();
     }
 
     private void OnMouseDown()
@@ -55,18 +59,25 @@ public class NPCController : EntityActionBase
         while (nowCostTime >= battleBase.costTime)
         {
 
-            //NPC攻击
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-
-            foreach (var hitCollider in hitColliders)
+            if (envCheck.enemys.Count != 0)
             {
-                if (hitCollider.CompareTag("Enemy"))
-                {
-                    Attack(hitCollider.gameObject);
-                    nowCostTime -= battleBase.costTime;
-                    return;
-                }
+                //NPC攻击
+                Attack(envCheck.firstEnemy);
+                nowCostTime -= battleBase.costTime;
+                return;
             }
+
+            //Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+
+            //foreach (var hitCollider in hitColliders)
+            //{
+            //    if (hitCollider.CompareTag("Enemy"))
+            //    {
+            //        Attack(hitCollider.gameObject);
+            //        nowCostTime -= battleBase.costTime;
+            //        return;
+            //    }
+            //}
 
             //NPC移动
             Move();
@@ -90,6 +101,7 @@ public class NPCController : EntityActionBase
         else
         {
             
+
             target.GetComponent<BattleBase>().ProcessAttack(battleBase);
         }
 
@@ -135,12 +147,13 @@ public class NPCController : EntityActionBase
             {
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+                CommandTargetPosition = new Vector3(mousePosition.x, mousePosition.y,0);
+                //RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-                if (hit.collider != null)
-                {
-                    CommandTargetPosition = hit.point;
-                }
+                //if (hit.collider != null)
+                //{
+                //    CommandTargetPosition = hit.point;
+                //}
 
                 isClick = false;
                 isPlayerControl = true;

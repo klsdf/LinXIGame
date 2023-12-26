@@ -49,20 +49,7 @@ public class EnemyController : EntityActionBase
     protected override void OnDead()
     {
         base.OnDead();
-        GameManager.Instance.GetMojing(mojing);
-        bool hasBlood =  Util.TryTrigger(0.5f, () =>
-        {
-            Instantiate(Resources.Load<GameObject>("HP球"), transform.position, Quaternion.identity);
-        });
-        if (!hasBlood)
-        {
-            Util.TryTrigger(0.5f, () =>
-            {
-                Instantiate(Resources.Load<GameObject>("金币"), transform.position, Quaternion.identity);
-            });
-            
-        }
-
+      
 
     }
 

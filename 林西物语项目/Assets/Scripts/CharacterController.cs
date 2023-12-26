@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
     public Vector3 direction;
 
     private bool canAttack;
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D charaRigidbody2D;
 
 
 
@@ -28,7 +28,7 @@ public class CharacterController : MonoBehaviour
     {
         targetPosition = transform.position;
         battleBase = GetComponent<BattleBase>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        charaRigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Start()

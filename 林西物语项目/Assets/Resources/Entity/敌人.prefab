@@ -160,10 +160,10 @@ GameObject:
   - component: {fileID: 8737491712710933765}
   - component: {fileID: 8737491712710933767}
   - component: {fileID: 8737491712710933762}
-  - component: {fileID: 8737491712710933763}
   - component: {fileID: 8737491712710933760}
   - component: {fileID: 8737491712710934014}
   - component: {fileID: 2125086913}
+  - component: {fileID: 3675543023102812983}
   m_Layer: 0
   m_Name: "\u654C\u4EBA"
   m_TagString: Enemy
@@ -258,26 +258,6 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   nowCostTime: 0
   mojing: 100
---- !u!114 &8737491712710933763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8737491712710933766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee2a76d21fd13f64abe26e2cf593f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  party: 3
-  maxHp: 60
-  attack: 5
-  defense: 3
-  hp: 10
-  costTime: 1
-  audioSource: {fileID: 0}
-  slider: {fileID: 0}
 --- !u!61 &8737491712710933760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -421,6 +401,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3675543023102812983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8737491712710933766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef382612df4d1a43ad39f0de73b2fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party: 3
+  maxHp: 0
+  attack: 0
+  defense: 0
+  hp: 0
+  costTime: 1
 --- !u!1001 &5323553256867913680
 PrefabInstance:
   m_ObjectHideFlags: 0
