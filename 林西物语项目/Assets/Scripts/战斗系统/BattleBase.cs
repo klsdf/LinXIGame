@@ -15,15 +15,37 @@ public abstract class BattleBase : MonoBehaviour
     public BattleParty party;
 
 
+    [Header("最大生命")]
     public float maxHp;
-    public float attack;
-    public float defense;
+
+    [Header("攻击")]
+    public float atk;
+
+    [Header("防御")]
+    public float def;
+
+    [Header("远程攻击")]
+    public float rangeAtk;
+
+    [Header("远程防御")]
+    public float rangeDef;
+
+    [Header("暴击率")]
+    public float crit;
+
+    [Header("暴击伤害")]
+    public float critDamage;
+
+    [Header("格挡率")]
+    public float block;
+
+  
+
+    public float costTime = 1;//每进行一次行动的耗时
 
 
     [SerializeField]
     private float hp;
-
-    public float costTime = 1;//每进行一次行动的耗时
 
     private AudioSource audioSource;
   
@@ -32,7 +54,27 @@ public abstract class BattleBase : MonoBehaviour
     //被敌人攻击
     public void ProcessAttack(BattleBase enemyData) 
     {
-        hp -= enemyData.attack - defense;
+        BattleBase defender = this;
+        BattleBase attakcer = enemyData;
+
+        float damage = 0;
+        //如果格挡成功了，那么就不会受到伤害
+        if (isBlock())
+        {
+            return;
+        }
+
+        if (attakcer.isCrit())
+        {
+            damage = BiggerThan0(attakcer.atk - defender.def)* attakcer.critDamage;
+
+        }
+        else
+        {
+            damage = BiggerThan0(attakcer.atk - defender.def);
+        }
+
+        hp -= damage;
 
         audioSource.Play();
         slider.maxValue = maxHp;
@@ -42,6 +84,27 @@ public abstract class BattleBase : MonoBehaviour
         {
             Dead();
         }
+    }
+
+    public bool isBlock()
+    {
+        return Util.TryTrigger(block);
+    }
+
+    public bool isCrit()
+    {
+        return Util.TryTrigger(crit);
+    }
+
+    public float BiggerThan0(float num)
+    {
+        if (num < 0)
+        {
+            return 0;
+        }
+            
+        else
+            return num;
     }
 
     //回血

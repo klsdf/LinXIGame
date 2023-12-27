@@ -64,7 +64,6 @@ public class EnemyController : EntityActionBase
 
     private void EnemyAttack(GameObject target)
     {
-        Debug.Log("攻击了玩家");
         targetPosition = transform.position;
         target.GetComponent<BattleBase>().ProcessAttack(battleBase);
     }

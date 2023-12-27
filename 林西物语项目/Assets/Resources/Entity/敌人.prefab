@@ -414,11 +414,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   party: 3
-  maxHp: 0
-  attack: 0
-  defense: 0
-  hp: 0
+  maxHp: 20
+  atk: 3
+  def: 0
+  rangeAtk: 0
+  rangeDef: 0
+  crit: 0.05
+  critDamage: 1.5
+  block: 0.2
   costTime: 1
+  hp: 0
+  reward: 10
 --- !u!1001 &5323553256867913680
 PrefabInstance:
   m_ObjectHideFlags: 0

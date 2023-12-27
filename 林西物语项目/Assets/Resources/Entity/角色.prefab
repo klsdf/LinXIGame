@@ -134,7 +134,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1526296687
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &442898477
@@ -422,7 +422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772349420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.4, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -554,12 +554,12 @@ GameObject:
   - component: {fileID: 8567789647261954324}
   - component: {fileID: 8567789647261954327}
   - component: {fileID: 8567789647261954325}
-  - component: {fileID: 8567789647261954326}
   - component: {fileID: 8567789647261954321}
   - component: {fileID: 8567789647261954320}
   - component: {fileID: 8567789647261954323}
   - component: {fileID: 8567789647261954317}
   - component: {fileID: 2080013041}
+  - component: {fileID: 2080013042}
   m_Layer: 0
   m_Name: "\u89D2\u8272"
   m_TagString: Player
@@ -655,26 +655,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   speed: 5.9
   direction: {x: 0, y: 0, z: 0}
---- !u!114 &8567789647261954326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8567789647261954330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee2a76d21fd13f64abe26e2cf593f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  party: 0
-  maxHp: 500
-  attack: 5
-  defense: 1
-  hp: 0
-  costTime: 1
-  audioSource: {fileID: 0}
-  slider: {fileID: 0}
+  boxCenter: {x: 0, y: 0}
+  boxSize: {x: 5, y: 5}
 --- !u!61 &8567789647261954321
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -854,7 +836,30 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &2080013042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567789647261954330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aef1d161d0f61546b6a13e9e13f400e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party: 0
+  maxHp: 50
+  atk: 5
+  def: 1
+  rangeAtk: 0
+  rangeDef: 0
+  crit: 0.1
+  critDamage: 2
+  block: 0.2
+  costTime: 1
+  hp: 0
 --- !u!1001 &228639159086680423
 PrefabInstance:
   m_ObjectHideFlags: 0

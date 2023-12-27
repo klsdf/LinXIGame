@@ -28,7 +28,7 @@ public class Skill
     [SerializeField]
     public float activeTime;//持续时间
 
-    SkillState _skillState = SkillState.cooldown;//默认初始值为冷却状态
+    SkillState _skillState;//默认初始值为冷却状态
 
     public SkillState skillState
     {
@@ -54,5 +54,6 @@ public class Skill
         this.skillType = skillType;
         this.cooldownTime = cooldownTime;
         this.activeTime = activeTime;
+        skillState = SkillState.cooldown;
     }
 }

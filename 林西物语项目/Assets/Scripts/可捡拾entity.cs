@@ -56,6 +56,7 @@ public abstract  class 可捡拾entity : MonoBehaviour
 
     private void OnDestroy()
     {
+        if(GameManager.Instance!=null)
         GameManager.Instance.OnPlayerMove -= CheckDestory;
     }
 }

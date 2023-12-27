@@ -30,6 +30,18 @@ public class Util : MonoBehaviour
         return false;
     }
 
+    public static bool TryTrigger(float probability)
+    {
+
+        float roll = UnityEngine.Random.Range(0f, 1f);
+        if (roll <= probability)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     void Start()
     {
         

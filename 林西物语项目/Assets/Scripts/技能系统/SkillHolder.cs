@@ -14,16 +14,21 @@ public class SkillHolder : MonoBehaviour
 
     public Skill skill;
 
+    private void Awake()
+    {
+        switch (skill.skillType)
+        {
+            case SkillType.闪现:
+                skill = new SkillFlash(SkillType.闪现, skill.cooldownTime, skill.activeTime);
+                break;
+        }
+
+    }
+
     private void Start()
     {
 
-        switch (skill.skillType) 
-        {
-            case SkillType.闪现:
-                skill = new SkillFlash(SkillType.闪现,skill.cooldownTime, skill.activeTime);
-                break;
-        }
-    
+       
         GameManager.Instance.OnPlayerMove += (playerCostTime )=>
         {
             //如果技能是准备状态，或者是执行状态，那么就不进行刷新
@@ -50,7 +55,7 @@ public class SkillHolder : MonoBehaviour
 
     public void CastSkill()
     {
-        
+        print(skill.skillState);
         if (skill.skillState==SkillState.ready)
         {
             skill.Active(gameObject);

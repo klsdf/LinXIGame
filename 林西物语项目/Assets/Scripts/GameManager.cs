@@ -54,42 +54,28 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    /// <summary>
-    /// 进入操作某个游戏对象的模式
-    /// </summary>
-    /// <param name="gameObject"></param>
-    /// 
-    //public bool isControlMode = false;
-    //public GameObject controlObj;
+    public bool isChoseMode = false;
+    public void EnterChoseMode()
+    {
+        isChoseMode = true;
+    }
 
-    //public void ChangeMode(GameObject gameObject)
-    //{
-    //    print("ok控制模式");
-    //    isControlMode = true;
-    //    controlObj = gameObject;
-    //}
-
-    //public void EndMode()
-    //{
-    //    //isControlMode = false;
-    //}
-
-
-    //private void Start()
-    //{
+    private void Update()
+    {
+        if (isChoseMode)
+        {
+            //当用户点击屏幕时，将玩家移动到点击的位置
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0;
+                player.GetComponent<CharacterController>().targetPosition = mousePosition;
+                player.transform.position = mousePosition;
+                isChoseMode = false;
+            }
+        }
+    }
 
 
-    //}
-
-    //private void Update()
-    //{
-    //    if (isControlMode)
-    //    {
-           
-
-            
-
-    //    }
-    //}
 
 }

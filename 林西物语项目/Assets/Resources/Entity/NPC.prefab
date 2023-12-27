@@ -367,11 +367,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   party: 0
-  maxHp: 0
-  attack: 0
-  defense: 0
-  hp: 0
+  maxHp: 20
+  atk: 5
+  def: 1
+  rangeAtk: 0
+  rangeDef: 0
+  crit: 0.1
+  critDamage: 2
+  block: 0.2
   costTime: 1
+  hp: 0
 --- !u!114 &6848747746651068670
 MonoBehaviour:
   m_ObjectHideFlags: 0
