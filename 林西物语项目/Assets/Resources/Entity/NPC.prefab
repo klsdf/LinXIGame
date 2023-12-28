@@ -394,7 +394,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   nowCostTime: 0
   NPCMoveSize: 20
-  profession: 2
+  profession: 0
   isPlayerControl: 0
   CommandTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &6848747746651068611

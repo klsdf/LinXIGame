@@ -1,21 +1,10 @@
 using UnityEngine;
 
-public enum NPCType
-{
-    Warrior,//战士
-    Wizard,//法师
-    Archer,//弓箭手
-    Priest,//牧师
-    Thief,//盗贼
-    Merchant,//商人
-}
 
-
-public class NPCController : EntityActionBase
+public class NPCController : AttackableEntityBase
 {
     public int NPCMoveSize=15;
 
-    public NPCType profession;//职业
 
     public bool isPlayerControl = false;
     private bool isClick = false;//是否正在点击
@@ -25,7 +14,6 @@ public class NPCController : EntityActionBase
 
     public Vector3 CommandTargetPosition; // 控制的目标位置
 
-    private EnvCheck envCheck;
 
     private LineRenderer lineRenderer;
     protected override void Start()
@@ -61,23 +49,12 @@ public class NPCController : EntityActionBase
 
             if (envCheck.enemys.Count != 0)
             {
+                isFindedEnemy = true;
                 //NPC攻击
                 Attack(envCheck.firstEnemy);
                 nowCostTime -= battleBase.costTime;
                 return;
             }
-
-            //Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-
-            //foreach (var hitCollider in hitColliders)
-            //{
-            //    if (hitCollider.CompareTag("Enemy"))
-            //    {
-            //        Attack(hitCollider.gameObject);
-            //        nowCostTime -= battleBase.costTime;
-            //        return;
-            //    }
-            //}
 
             //NPC移动
             Move();
@@ -89,24 +66,39 @@ public class NPCController : EntityActionBase
 
     private void Attack(GameObject target)
     {
-        //Debug.Log("攻击了玩家");
-
+   
         if (profession == NPCType.Archer)
         {
             GameObject bullet = Resources.Load<GameObject>("子弹");
             //创建一个bullet对象
             GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
             bulletObj.GetComponent<BulletController>().Init(target,100);
+            targetPosition = transform.position;
         }
         else
         {
-            
+            print(Vector2.Distance(transform.position, target.transform.position));
+            //如果敌人和自己的距离小于2，那么就进行攻击
+            if (Vector2.Distance(transform.position, target.transform.position) < 4)
+            {
+                target.GetComponent<BattleBase>().ProcessAttack(battleBase);
+            }
+            else 
+            {
+                MoveToenemy(target);
+            }
 
-            target.GetComponent<BattleBase>().ProcessAttack(battleBase);
+            
         }
 
-        targetPosition = transform.position;
+      
 
+    }
+
+    private void MoveToenemy(GameObject target)
+    {
+        Vector3 direction = (target.transform.position - targetPosition).normalized;
+        targetPosition = targetPosition + direction;
     }
 
 

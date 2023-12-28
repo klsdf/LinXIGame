@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObj: {fileID: 0}
   costTime: 0.5
+  damage: 1
 --- !u!58 &844585098357258207
 CircleCollider2D:
   m_ObjectHideFlags: 0
