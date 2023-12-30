@@ -1,13 +1,16 @@
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 public class EnemyController : AttackableEntityBase
 {
+    private BehaviorTree behaviorTree;
 
 
 
     protected override void Start()
     {
-        
+        base.Start();
+        behaviorTree = GetComponent<BehaviorTree>();
     }
     protected override void Action(float playerCostTime)
     {
@@ -18,38 +21,9 @@ public class EnemyController : AttackableEntityBase
 
         while (nowCostTime >= battleBase.costTime)
         {
-            if (envCheck.enemys.Count != 0)
-            {
-            
-                //NPC攻击
-                EnemyAttack(envCheck.firstEnemy);
-                nowCostTime -= battleBase.costTime;
-                return;
-            }
-            //敌人攻击
-            //Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-
-            //    foreach (var hitCollider in hitColliders)
-            //    {
-            //        BattleBase battleBase = hitCollider.GetComponent<BattleBase>();
-            //        if (battleBase != null)
-            //        {
-            //            if (hitCollider.GetComponent<BattleBase>().party == BattleParty.Player)
-            //            {
-            //                EnemyAttack(hitCollider.gameObject);
-            //                nowCostTime -= battleBase.costTime;
-            //                return;
-            //            }
-            //        }
-            //    }
-            
-
            
 
-            //敌人移动
-            EnemyMove();
-
-
+            behaviorTree.SendEvent("CanAction");
             nowCostTime -= battleBase.costTime;
         }
     }

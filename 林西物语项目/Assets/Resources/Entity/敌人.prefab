@@ -257,6 +257,7 @@ MonoBehaviour:
   manhattanDistance: 1
   targetPosition: {x: 0, y: 0, z: 0}
   nowCostTime: 0
+  profession: 0
   mojing: 100
 --- !u!61 &8737491712710933760
 BoxCollider2D:

@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0;
-                player.GetComponent<CharacterController>().targetPosition = mousePosition;
+                player.GetComponent<PlayerController>().targetPosition = mousePosition;
                 player.transform.position = mousePosition;
                 isChoseMode = false;
             }

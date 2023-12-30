@@ -15,5 +15,6 @@ public abstract class AttackableEntityBase : EntityActionBase
         base.Start();
         envCheck = GetComponentInChildren<EnvCheck>();
     }
+    protected override abstract void Action(float playerCostTime);
 
 }

@@ -39,7 +39,7 @@ public class NPCController : AttackableEntityBase
 
     protected override void Action(float playerCostTime)
     {
-        playerTargetPosition = GameManager.Instance.player.GetComponent<CharacterController>().targetPosition;
+        playerTargetPosition = GameManager.Instance.player.GetComponent<PlayerController>().targetPosition;
 
 
         nowCostTime += playerCostTime;
@@ -49,7 +49,7 @@ public class NPCController : AttackableEntityBase
 
             if (envCheck.enemys.Count != 0)
             {
-                isFindedEnemy = true;
+                //isFindedEnemy = true;
                 //NPC攻击
                 Attack(envCheck.firstEnemy);
                 nowCostTime -= battleBase.costTime;
