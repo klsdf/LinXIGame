@@ -276,8 +276,9 @@ GameObject:
   - component: {fileID: 6848747746651068612}
   - component: {fileID: 6848747746651068613}
   - component: {fileID: 400030144}
+  - component: {fileID: 980476301}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: "NPC\u57FA\u7C7B"
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,6 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aef1d161d0f61546b6a13e9e13f400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 2
   party: 0
   maxHp: 20
   atk: 5
@@ -375,6 +377,8 @@ MonoBehaviour:
   crit: 0.1
   critDamage: 2
   block: 0.2
+  attackRange: 3
+  reconnaissanceRange: 10
   costTime: 1
   hp: 0
 --- !u!114 &6848747746651068670
@@ -394,7 +398,6 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   nowCostTime: 0
   NPCMoveSize: 20
-  profession: 0
   isPlayerControl: 0
   CommandTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &6848747746651068611
@@ -638,6 +641,47 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &980476301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848747746651068615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 1
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(1346.1582,-58.8907166)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-75.87732,202.386169)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-300,170)"},"ID":2,"Name":"Has
+        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"CanAction"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(153.4653,212.051453)"},"ID":3,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-189.557312,202.5167)"},"ID":4,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"\u88ab\u73a9\u5bb6\u64cd\u63a7\u4e2d","NodeData":{"Offset":"(-86.279274,205.81424)"},"ID":5,"Name":"\u88ab\u73a9\u5bb6\u64cd\u63a7\u4e2d","Instant":true,"SharedBool\u662f\u5426\u88ab\u73a9\u5bb6\u63a7\u5236":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"\u79fb\u52a8\u5230\u73a9\u5bb6\u63a7\u5236\u70b9","NodeData":{"Offset":"(74.980896,213.46167)"},"ID":6,"Name":"\u79fb\u52a8\u5230\u73a9\u5bb6\u63a7\u5236\u70b9","Instant":true,"SharedVector3\u70b9\u51fb\u7684\u4f4d\u7f6e":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"\u70b9\u51fb\u7684\u4f4d\u7f6e","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedBool\u662f\u5426\u88ab\u73a9\u5bb6\u63a7\u5236":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"\u662f\u5426\u88ab\u73a9\u5bb6\u63a7\u5236","IsShared":true,"BooleanmValue":false},"SharedTransformtargetTrtansform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":null}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(241.6279,141.395355)"},"ID":7,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-154.24942,258.136627)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"\u53d1\u73b0\u4e86\u654c\u4eba","NodeData":{"Offset":"(-124.065918,227.524536)"},"ID":9,"Name":"\u53d1\u73b0\u4e86\u654c\u4eba","Instant":true,"Single\u4fa6\u6d4b\u8303\u56f4":10,"SharedTransformtargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"\u654c\u4eba","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(116.504395,221.220337)"},"ID":10,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-114.065918,187.524536)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"\u662f\u5426\u5728\u653b\u51fb\u8303\u56f4\u5185","NodeData":{"Offset":"(-190.065918,191.152451)"},"ID":12,"Name":"\u662f\u5426\u5728\u653b\u51fb\u8303\u56f4\u5185","Instant":true,"SharedTransformenemy":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"\u654c\u4eba","IsShared":true},"SingleattackRange":3},{"Type":"\u653b\u51fb","NodeData":{"Offset":"(94.8178,196.268738)"},"ID":13,"Name":"\u653b\u51fb","Instant":true,"SharedTransformtarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"\u654c\u4eba","IsShared":true}}]},{"Type":"\u8ffd\u51fb","NodeData":{"Offset":"(89.85913,212.659058)"},"ID":14,"Name":"\u8ffd\u51fb","Instant":true,"SharedTransformtargetTrtansform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"\u654c\u4eba","IsShared":true}}]}]},{"Type":"\u8ddf\u968f\u73a9\u5bb6","NodeData":{"Offset":"(196.3637,269.545044)"},"ID":15,"Name":"\u8ddf\u968f\u73a9\u5bb6","Instant":true}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"\u70b9\u51fb\u7684\u4f4d\u7f6e","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"\u654c\u4eba","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"\u662f\u5426\u88ab\u73a9\u5bb6\u63a7\u5236","IsShared":true,"BooleanmValue":false}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.7
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1001 &5334421863867175877
 PrefabInstance:
   m_ObjectHideFlags: 0

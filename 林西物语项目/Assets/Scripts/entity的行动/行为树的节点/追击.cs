@@ -11,15 +11,15 @@ public class 追击 : Action
 {
     public SharedTransform targetTrtansform;
 
-    private EnemyController enemyController;
+    private EntityActionBase entityController;
 
 
     Vector3 targetPosition;
     public override void OnStart()
     {
-        enemyController = GetComponent<EnemyController>();
+        entityController = GetComponent<EntityActionBase>();
         base.OnStart();
-        targetPosition = enemyController.targetPosition;
+        targetPosition = entityController.targetPosition;
     }
 
     public override TaskStatus OnUpdate()
@@ -30,8 +30,7 @@ public class 追击 : Action
             Vector3 actionTargetPosition = enemy.position;
             //playerTargetPosition = GameManager.Instance.player.GetComponent<CharacterController>().targetPosition;
             Vector3 directionToPlayer = (actionTargetPosition - targetPosition).normalized;
-            enemyController.targetPosition = targetPosition + directionToPlayer;
-            Debug.Log("追击");
+            entityController.targetPosition = targetPosition + directionToPlayer;
         }
         
         return TaskStatus.Success;

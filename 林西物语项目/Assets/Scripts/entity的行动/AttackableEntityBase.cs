@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class AttackableEntityBase : EntityActionBase
 {
-    public NPCType profession;//职业
+
     protected EnvCheck envCheck;
 
     protected override void Start()

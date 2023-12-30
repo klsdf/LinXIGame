@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using BehaviorDesigner.Runtime;
 
 public class NPCController : AttackableEntityBase
 {
@@ -16,6 +16,9 @@ public class NPCController : AttackableEntityBase
 
 
     private LineRenderer lineRenderer;
+
+    private BehaviorTree behaviorTree;
+
     protected override void Start()
     {
         base.Start();
@@ -26,6 +29,7 @@ public class NPCController : AttackableEntityBase
         lineRenderer.endColor = Color.red; // 线的结束颜色
 
         envCheck = GetComponentInChildren<EnvCheck>();
+        behaviorTree = GetComponent<BehaviorTree>();
     }
 
     private void OnMouseDown()
@@ -33,102 +37,86 @@ public class NPCController : AttackableEntityBase
         //GameManager.Instance.ChangeMode(gameObject);
         isPlayerControl = true;
         isClick = true;
-
-
     }
 
     protected override void Action(float playerCostTime)
     {
         playerTargetPosition = GameManager.Instance.player.GetComponent<PlayerController>().targetPosition;
-
-
         nowCostTime += playerCostTime;
 
         while (nowCostTime >= battleBase.costTime)
         {
-
-            if (envCheck.enemys.Count != 0)
-            {
-                //isFindedEnemy = true;
-                //NPC攻击
-                Attack(envCheck.firstEnemy);
-                nowCostTime -= battleBase.costTime;
-                return;
-            }
-
-            //NPC移动
-            Move();
-
+            behaviorTree.SendEvent("CanAction");
             nowCostTime -= battleBase.costTime;
         }
     }
 
 
-    private void Attack(GameObject target)
-    {
-   
-        if (profession == NPCType.Archer)
-        {
-            GameObject bullet = Resources.Load<GameObject>("子弹");
-            //创建一个bullet对象
-            GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
-            bulletObj.GetComponent<BulletController>().Init(target,100);
-            targetPosition = transform.position;
-        }
-        else
-        {
-            print(Vector2.Distance(transform.position, target.transform.position));
-            //如果敌人和自己的距离小于2，那么就进行攻击
-            if (Vector2.Distance(transform.position, target.transform.position) < 4)
-            {
-                target.GetComponent<BattleBase>().ProcessAttack(battleBase);
-            }
-            else 
-            {
-                MoveToenemy(target);
-            }
+    //private void Attack(GameObject target)
+    //{
 
-            
-        }
-
-      
-
-    }
-
-    private void MoveToenemy(GameObject target)
-    {
-        Vector3 direction = (target.transform.position - targetPosition).normalized;
-        targetPosition = targetPosition + direction;
-    }
+    //    if (profession == NPCType.Archer)
+    //    {
+    //        GameObject bullet = Resources.Load<GameObject>("子弹");
+    //        //创建一个bullet对象
+    //        GameObject bulletObj = Instantiate(bullet, transform.position, Quaternion.identity);
+    //        bulletObj.GetComponent<BulletController>().Init(target,100);
+    //        targetPosition = transform.position;
+    //    }
+    //    else
+    //    {
+    //        print(Vector2.Distance(transform.position, target.transform.position));
+    //        //如果敌人和自己的距离小于2，那么就进行攻击
+    //        if (Vector2.Distance(transform.position, target.transform.position) < 4)
+    //        {
+    //            target.GetComponent<BattleBase>().ProcessAttack(battleBase);
+    //        }
+    //        else 
+    //        {
+    //            MoveToenemy(target);
+    //        }
 
 
-    //移动
-    private void Move()
-    {
+    //    }
 
 
-        if (isPlayerControl == true)
-        {
-            //集群力，默认以玩家为中心点
-            Vector3 direction = (CommandTargetPosition - targetPosition).normalized;
-            targetPosition = targetPosition + direction;
 
-            if (Vector2.Distance(CommandTargetPosition, transform.position) < 1.0f)
-            {
-                isPlayerControl = false;
-            }
+    //}
+
+    //private void MoveToenemy(GameObject target)
+    //{
+    //    Vector3 direction = (target.transform.position - targetPosition).normalized;
+    //    targetPosition = targetPosition + direction;
+    //}
 
 
-            return;
-        }
+    ////移动
+    //private void Move()
+    //{
 
-     
 
-        Vector3 playerTempPosition = playerTargetPosition + new Vector3(Random.Range(-NPCMoveSize, NPCMoveSize), Random.Range(-NPCMoveSize, NPCMoveSize), 0);
-        //集群力，默认以玩家为中心点
-        Vector3 directionToPlayer = (playerTempPosition - targetPosition).normalized;
-        targetPosition = targetPosition + directionToPlayer;
-    }
+    //    if (isPlayerControl == true)
+    //    {
+    //        //集群力，默认以玩家为中心点
+    //        Vector3 direction = (CommandTargetPosition - targetPosition).normalized;
+    //        targetPosition = targetPosition + direction;
+
+    //        if (Vector2.Distance(CommandTargetPosition, transform.position) < 1.0f)
+    //        {
+    //            isPlayerControl = false;
+    //        }
+
+
+    //        return;
+    //    }
+
+
+
+    //    Vector3 playerTempPosition = playerTargetPosition + new Vector3(Random.Range(-NPCMoveSize, NPCMoveSize), Random.Range(-NPCMoveSize, NPCMoveSize), 0);
+    //    //集群力，默认以玩家为中心点
+    //    Vector3 directionToPlayer = (playerTempPosition - targetPosition).normalized;
+    //    targetPosition = targetPosition + directionToPlayer;
+    //}
 
     protected override void Update()
     {
@@ -140,6 +128,8 @@ public class NPCController : AttackableEntityBase
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
                 CommandTargetPosition = new Vector3(mousePosition.x, mousePosition.y,0);
+
+                behaviorTree.SetVariableValue("点击的位置", CommandTargetPosition);
                 //RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
                 //if (hit.collider != null)

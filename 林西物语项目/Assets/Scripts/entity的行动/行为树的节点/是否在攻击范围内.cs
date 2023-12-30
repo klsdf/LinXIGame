@@ -10,11 +10,14 @@ public class 是否在攻击范围内 : Conditional
 {
     public SharedTransform enemy;
 
-    public float attackRange = 3.0f;
+    public float attackRange;
 
-    void Start()
+    private BattleBase  battleBase;
+
+    public override void OnStart()
     {
-        
+        battleBase = GetComponent<BattleBase>();
+        attackRange = battleBase.attackRange;
     }
 
     public override TaskStatus OnUpdate()

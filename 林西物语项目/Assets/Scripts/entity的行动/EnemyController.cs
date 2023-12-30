@@ -39,8 +39,6 @@ public class EnemyController : AttackableEntityBase
     protected override void OnDead()
     {
         base.OnDead();
-      
-
     }
 
 

@@ -13,4 +13,5 @@ public enum NPCType
     Priest,//牧师
     Thief,//盗贼
     Merchant,//商人
+    Boss
 }

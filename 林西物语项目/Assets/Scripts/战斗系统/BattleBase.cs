@@ -11,7 +11,8 @@ using UnityEngine.UI;
 
 public abstract class BattleBase : MonoBehaviour
 {
-   
+    public NPCType profession;//职业
+
     public BattleParty party;
 
 
@@ -39,8 +40,14 @@ public abstract class BattleBase : MonoBehaviour
     [Header("格挡率")]
     public float block;
 
-  
+    [Header("攻击距离")]
+    public float attackRange = 3.0f;
 
+    [Header("侦察距离")]
+    public float reconnaissanceRange = 10.0f;
+
+
+    [Header("移动耗时")]
     public float costTime = 1;//每进行一次行动的耗时
 
 
@@ -67,7 +74,6 @@ public abstract class BattleBase : MonoBehaviour
         if (attakcer.isCrit())
         {
             damage = BiggerThan0(attakcer.atk - defender.def)* attakcer.critDamage;
-
         }
         else
         {
@@ -77,13 +83,18 @@ public abstract class BattleBase : MonoBehaviour
         hp -= damage;
 
         audioSource.Play();
-        slider.maxValue = maxHp;
-        slider.value = hp;
+        updateUI();
 
         if (hp <= 0)
         {
             Dead();
         }
+    }
+
+    private void updateUI()
+    {
+        slider.maxValue = maxHp;
+        slider.value = hp;
     }
 
     public bool isBlock()
@@ -114,23 +125,21 @@ public abstract class BattleBase : MonoBehaviour
     }
 
 
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
-
         hp -= damage;
-
+        updateUI();
         if (hp <= 0)
         {
             Dead();
         }
-
     }
 
     public virtual  void Dead() 
     {
-
         Destroy(gameObject);
     }
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -141,8 +150,6 @@ public abstract class BattleBase : MonoBehaviour
             slider = test;
         }
     }
-
-
     void Update()
     {
      

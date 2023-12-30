@@ -1,12 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4294367579017596371
+--- !u!1001 &3700025177420370577
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 676045943372338302, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
+      propertyPath: costTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676045943372338302, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
+      propertyPath: rangeAtk
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676045943372338302, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
+      propertyPath: profession
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676045943372338302, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 676045943372338302, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
+      propertyPath: reconnaissanceRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4597332155185478571, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -17,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848747746651068615, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: "\u961F\u53CB\u8FDC\u7A0B\u9B54\u6CD5\u5E08"
       objectReference: {fileID: 0}
     - target: {fileID: 6848747746651068671, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
       propertyPath: m_RootOrder
@@ -25,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848747746651068671, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6848747746651068671, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6848747746651068671, guid: 70ae02e4ab40ada4f9905b2cfdbef317, type: 3}
       propertyPath: m_LocalPosition.z

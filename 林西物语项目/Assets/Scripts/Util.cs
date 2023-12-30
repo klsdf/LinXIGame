@@ -6,7 +6,7 @@ using System;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
-public class Util : MonoBehaviour
+public class Util 
 {
 
 
@@ -42,16 +42,15 @@ public class Util : MonoBehaviour
         return false;
     }
 
-    void Start()
+
+    public static bool isEnemy(BattleBase battleBase1 ,BattleBase battleBase2)
     {
-        
+        if (battleBase1.party == BattleParty.Player && battleBase2.party == BattleParty.Enemy)
+            return true;
+        if (battleBase1.party == BattleParty.Enemy && battleBase2.party == BattleParty.Player)
+            return true;
+        return false;
     }
 
 
-
-
-    void Update()
-    {
-        
-    }
 }
