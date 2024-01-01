@@ -82,6 +82,11 @@ public abstract class BattleBase : MonoBehaviour
 
         hp -= damage;
 
+        GameObject obj = Resources.Load<GameObject>("伤害跳字");
+        Instantiate(obj, transform.position, Quaternion.identity, transform);
+        obj.GetComponent<伤害跳字>().Init(damage);
+
+
         audioSource.Play();
         updateUI();
 
@@ -128,6 +133,11 @@ public abstract class BattleBase : MonoBehaviour
     public void GetDamage(float damage)
     {
         hp -= damage;
+
+        GameObject obj =  Resources.Load<GameObject>("伤害跳字");
+        obj.GetComponent<伤害跳字>().Init(damage);
+        Instantiate(obj, transform.position,Quaternion.identity,transform);
+
         updateUI();
         if (hp <= 0)
         {
@@ -137,6 +147,10 @@ public abstract class BattleBase : MonoBehaviour
 
     public virtual  void Dead() 
     {
+        if (gameObject == GameManager.Instance.player)
+        {
+            GameManager.Instance.GameOver();
+        }
         Destroy(gameObject);
     }
 

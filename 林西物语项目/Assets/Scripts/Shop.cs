@@ -7,33 +7,37 @@ using UnityEngine;
 /// </summary>
 public class Shop : MonoBehaviour
 {
-    public int cost = 100;
-    public GameObject prefab;
+    public Canvas canvas;
 
-
-    void Start()
+    private void Start()
     {
-        
-    }
 
-
-    void Update()
-    {
-        
     }
 
     public void Interactive()
     {
-        //print("交互");
+
+        canvas.gameObject.SetActive(true);
+    }
+
+    public void BuyCard()
+    {
         if (GameManager.Instance.CheckMojingNum() >= 100)
         {
+            WarCardController.Instance.AddCard("兵卡近战");
             GameManager.Instance.GetMojing(-100);
-            Instantiate(prefab, transform.position + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
         }
-        else 
+        else
         {
             print("金钱不足");
         }
     }
-         
+
+
+    public void CloseShop()
+    {
+        canvas.gameObject.SetActive(false);
+    }
+
+
 }

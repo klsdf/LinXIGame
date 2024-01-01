@@ -87,37 +87,41 @@ public class PlayerController : MonoBehaviour
                     //如果前进的方向有敌人
                     if (hitsObj != gameObject  )
                     {
-
-                        if (hitsObj.CompareTag("Enemy") || hitsObj.CompareTag("Tree"))
+                        BattleBase otherBattleBase = hitsObj.GetComponent<BattleBase>();
+                        if (otherBattleBase != null)
                         {
-                            //玩家攻击
-                            if (canAttack == true)
+
+                            if (otherBattleBase.party == BattleParty.Enemy || otherBattleBase.party == BattleParty.Neutral)
                             {
-                                hits[i].collider.gameObject.GetComponent<BattleBase>().ProcessAttack(battleBase);
-                                targetPosition = transform.position;
-                                GameManager.Instance.PlayerMove();
-                                canAttack = false;
-                                return;
+                                //玩家攻击
+                                if (canAttack == true)
+                                {
+                                    hits[i].collider.gameObject.GetComponent<BattleBase>().ProcessAttack(battleBase);
+                                    targetPosition = transform.position;
+                                    GameManager.Instance.PlayerAction();
+                                    canAttack = false;
+                                    return;
+                                }
+                                //说明玩家现在刚刚攻击完，而且还按着键
+                                else
+                                {
+                                    return;
+                                }
                             }
-                            //说明玩家现在刚刚攻击完，而且还按着键
-                            else
-                            {
-                                return;
-                            }
-                        } 
+                        }
                     }
                 }
 
                 //如果前面没有敌人的话，就移动
                 targetPosition += new Vector3(x, y, 0);
-                GameManager.Instance.PlayerMove();
+                GameManager.Instance.PlayerAction();
 
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager.Instance.PlayerMove();
+            GameManager.Instance.PlayerAction();
         }
       
     }

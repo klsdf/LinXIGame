@@ -422,7 +422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772349420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: 0}
+  m_LocalPosition: {x: -0.13, y: 0.18, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -629,7 +629,7 @@ SpriteRenderer:
   m_SortingLayerID: -134899363
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa960f58e04bcdf42be1fc1ff6349914, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c2576dc604bab6498a579460296e825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -673,7 +673,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
@@ -849,6 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aef1d161d0f61546b6a13e9e13f400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 0
   party: 0
   maxHp: 50
   atk: 5
@@ -858,6 +859,8 @@ MonoBehaviour:
   crit: 0.1
   critDamage: 2
   block: 0.2
+  attackRange: 3
+  reconnaissanceRange: 10
   costTime: 1
   hp: 0
 --- !u!1001 &228639159086680423
@@ -937,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8487787010546306432, guid: 94c83f5a760cac440a525782399e45e1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 6.03
+      value: 4.46
       objectReference: {fileID: 0}
     - target: {fileID: 8487787010546306432, guid: 94c83f5a760cac440a525782399e45e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

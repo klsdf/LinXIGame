@@ -55,10 +55,4 @@ public abstract  class EntityActionBase : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(transform.position, transform.position + (playerTargetPosition - targetPosition).normalized);
-    //}
 }

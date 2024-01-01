@@ -40,17 +40,19 @@ public class BulletController : MonoBehaviour
     {
         GameManager.Instance.OnPlayerMove += Action;
         targetPosition = transform.position;
-        battleBase1 = attacker.GetComponent<BattleBase>();
+        
     }
 
 
     public void Init(Transform attacker,Transform attackTarget, float damage, BulletType bulletType)
     {
+        
         this.attacker = attacker;
         target = attackTarget;
         this.damage = damage;
         this.bulletType = bulletType;
         dir = (attackTarget.position - transform.position).normalized;
+        battleBase1 = attacker.GetComponent<BattleBase>();
     }
 
     public void Init(Transform attacker, Vector3 direction, float damage )
@@ -59,6 +61,7 @@ public class BulletController : MonoBehaviour
         this.damage = damage;
         dir = direction.normalized;
         bulletType = BulletType.直线;
+        battleBase1 = attacker.GetComponent<BattleBase>();
     }
 
 
@@ -116,25 +119,24 @@ public class BulletController : MonoBehaviour
     private void OnDestroy()
     {
         if(GameManager.Instance!=null)
-        GameManager.Instance.OnPlayerMove -= Action;
+            GameManager.Instance.OnPlayerMove -= Action;
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-    
-
        
         BattleBase battleBase2 = other.GetComponent<BattleBase>();
-
-        if(battleBase2!=null)
-
-        if (Util.isEnemy(battleBase1, battleBase2))
-        {
-            battleBase2.GetDamage(damage);
-            Destroy(gameObject);
-
+        print(other.name);
+        if (battleBase2 != null) {
+            if (Util.isEnemy(battleBase1, battleBase2))
+            {
+                battleBase2.GetDamage(damage);
+                Destroy(gameObject);
+            }
         }
+
+
     }
 
 }

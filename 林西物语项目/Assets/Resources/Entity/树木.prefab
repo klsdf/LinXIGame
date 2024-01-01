@@ -244,12 +244,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80352125fb1af1c449d288b65d17361f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profession: 0
   party: 1
-  maxHp: 0
-  attack: 0
-  defense: 0
-  hp: 0
+  maxHp: 50
+  atk: 0
+  def: 0
+  rangeAtk: 0
+  rangeDef: 0
+  crit: 0
+  critDamage: 0
+  block: 0
+  attackRange: 3
+  reconnaissanceRange: 10
   costTime: 1
+  hp: 0
 --- !u!1001 &361793696
 PrefabInstance:
   m_ObjectHideFlags: 0
