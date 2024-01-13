@@ -8,7 +8,15 @@ using UnityEngine.Rendering.Universal;
 /// </summary>
 public class DialogEffect : Singleton<DialogEffect>
 {
-    public Light2D light2D;
+    private Light2D light2D;
+
+    void Start()
+    {
+        light2D = FindObjectOfType<Light2D>();
+    }
+
+
+
     public void FadeIn()
     {
         light2D.intensity = 1;

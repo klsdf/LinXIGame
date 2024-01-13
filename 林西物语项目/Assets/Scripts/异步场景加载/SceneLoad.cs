@@ -10,8 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class SceneLoad : Singleton<SceneLoad>
 {
-    public Slider slider;
-    public TMP_Text tips;
+    private Slider slider;
+    private TMP_Text tips;
 
     public string sceneName; // 需要加载的场景名
     AsyncOperation asyncLoad;
@@ -38,7 +38,7 @@ public class SceneLoad : Singleton<SceneLoad>
         // 等待直到场景完全加载
         while (!asyncLoad.isDone)
         {
-            Debug.Log("Loading progress: " + (asyncLoad.progress * 100) + "%");
+            //Debug.Log("Loading progress: " + (asyncLoad.progress * 100) + "%");
             slider.value = asyncLoad.progress;
             if (asyncLoad.progress >= 0.9f)
             {

@@ -35,15 +35,8 @@ public class PlayerEnvCheck : MonoBehaviour
         if (collision.CompareTag("Shop"))
         {
             searchIcon.SetActive(false);
+            collisionObj = null;
         }
-        collisionObj = null;
-    }
-
-
-
-
-    void Start()
-    {
         
     }
 

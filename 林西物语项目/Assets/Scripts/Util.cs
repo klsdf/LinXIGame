@@ -53,4 +53,20 @@ public class Util
     }
 
 
+
+    public static Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Camera.main.transform.position.y;
+        return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
+
+
+    public static Vector3 GetMouseWorldPosition2D()
+    {
+        Vector3 result =  GetMouseWorldPosition();
+        result.z = 0;
+        return result;
+    }
 }

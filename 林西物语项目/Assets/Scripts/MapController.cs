@@ -20,7 +20,6 @@ public class Objinfo
 }
 public class MapController : Singleton<MapController>
 {
-    public GenType genType;
 
     private TileBase[] terrainTiles;
 

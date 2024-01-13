@@ -8,10 +8,10 @@ using UnityEngine;
 public class 第一章剧情 : MonoBehaviour
 {
 
-    void Start()
+
+    public void Init()
     {
 
-        DialogEffect.Instance.FadeOut();
         DialogSystem.Instance.SetAndPlayStorys(new List<StoryScript>() {
         new StoryScript("不要再尝试了，失败了，，4号试验场，，，已经，，机会，，，剩，，，拜托了，不，，，再。快醒醒。"),
         new StoryScript("最后，，，机会。。合并。。。毁灭"),
@@ -19,9 +19,15 @@ public class 第一章剧情 : MonoBehaviour
         new StoryScript("看来是真睡死了。这可咋整啊。",Character.秦飞羽),
         new StoryScript("嘿，我有主意了。",Character.秦飞羽),
         new StoryScript("看招！猴子偷……",Character.秦飞羽),
-        new StoryScript("猴子偷桃！",Character.李二狗),
-        new StoryScript("test"),
-        });
+        new StoryScript("猴子偷桃！",Character.李二狗,Tachie.李二狗_严肃),
+        new StoryScript("小子，你还太嫩了",Character.李二狗,Tachie.李二狗_疑惑),
+        }); ;
+    }
+
+    void Start()
+    {
+
+      
         
 
 

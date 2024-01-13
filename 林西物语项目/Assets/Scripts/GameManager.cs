@@ -4,18 +4,24 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 /// <summary>
 /// 作者：闫辰祥
 /// </summary>
+
+
+
+public enum GameType
+{
+    剧情,
+    游戏
+}
+
+
 public class GameManager : Singleton<GameManager>
 {
-
+    GameType gameType;
     private int moJIngNum =0;
-
-
-
-
-
 
     private int populationNum = 0;
     public int PopulationNum
@@ -55,14 +61,17 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        //text = GetComponent<TMP_Text>();
+       
     }
 
     private void ChangeMOjing(int num)
     {
-        moJIngNum += num;
-        moJIngNum = Mathf.Clamp(moJIngNum,0,999999);
-        text.text = moJIngNum.ToString();
+       
+        int newNum = Mathf.Clamp(moJIngNum + num, 0, 999999); 
+
+        DOTween.To(() => moJIngNum, x => moJIngNum = x, newNum, 1f) // 1f是动画的持续时间，可以根据需要更改
+            .OnUpdate(() => text.text = moJIngNum.ToString())
+            .OnComplete(() => moJIngNum = newNum);
     }
 
     public int CheckMojingNum()
@@ -90,6 +99,13 @@ public class GameManager : Singleton<GameManager>
     //玩家进行了行动，包括攻击， 移动，放置卡牌等
     public void PlayerAction()
     {
+
+        //剧情模式下，玩家无法操作
+        if (gameType == GameType.剧情)
+        {
+            return;
+        }
+
         float playerCostTime = player.GetComponent<BattleBase>().costTime;
         OnPlayerMove?.Invoke(playerCostTime);
     }
@@ -170,5 +186,11 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+
+
+    public void EnterStoryMode()
+    {
+        gameType = GameType.剧情;
+    }
 
 }

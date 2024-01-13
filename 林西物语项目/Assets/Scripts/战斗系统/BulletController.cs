@@ -127,7 +127,6 @@ public class BulletController : MonoBehaviour
     {
        
         BattleBase battleBase2 = other.GetComponent<BattleBase>();
-        print(other.name);
         if (battleBase2 != null) {
             if (Util.isEnemy(battleBase1, battleBase2))
             {

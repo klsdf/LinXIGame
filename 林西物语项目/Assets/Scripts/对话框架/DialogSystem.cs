@@ -10,6 +10,8 @@ using UnityEngine;
 /// </summary>
 /// 
 
+
+///自定义的，角色的姓名类
 public enum Character
 {
     李二狗,
@@ -17,6 +19,20 @@ public enum Character
     林千叶,
     月千秋
 }
+
+
+/// <summary>
+/// 自定义的，立绘的名称类
+/// </summary>
+public enum Tachie
+{
+    李二狗_严肃,
+    李二狗_沉默,
+    李二狗_生气,
+    李二狗_疑惑
+}
+
+
 
 public class StoryScript
 {
@@ -41,15 +57,25 @@ public class StoryScript
     {
         this.function = function;
     }
+
     public StoryScript(string text, Character character) : this(text)
     {
         this.nameText = character.ToString();
+    }
+    public StoryScript(string text, Character character,Tachie tachie) : this(text)
+    {
+        this.nameText = character.ToString();
+        this.tatsueName = tachie.ToString();
     }
     public StoryScript(string text, Character character, Action function) : this(text,character)
     {
         this.function = function;
     }
-
+    public StoryScript(string text, Character character, Tachie tachie, Action function) : this(text, character)
+    {
+        this.function = function;
+        this.tatsueName = tachie.ToString();
+    }
 
     public StoryScript(string text, Action function):this(text)
     {
@@ -57,18 +83,18 @@ public class StoryScript
     }
 }
 
-
+[RequireComponent(typeof(DialogEffect))]
 public class DialogSystem : Singleton<DialogSystem>
 {
   
 
     //UI部分
     [Header("对话文本区域")]
-    public TMP_Text textDialog;//对话文本
-    public TMP_Text textName;//姓名文本
-    public Image imageTatsue;//立绘图像
+    private TMP_Text textDialog;//对话文本
+    private TMP_Text textName;//姓名文本
+    private Image imageTatsue;//立绘图像
     [Header("对话区域")]
-    public GameObject dialogArea;//对话区域
+    private GameObject dialogArea;//对话区域
 
 
     //逻辑部分
@@ -77,10 +103,11 @@ public class DialogSystem : Singleton<DialogSystem>
 
     private bool canPlay = true;
 
-    public string defaultText = "结束";
+    private string defaultText = "结束";
 
 
-
+    //剧情
+    public 第一章剧情 剧情;
 
 
     private void Update()
@@ -93,12 +120,20 @@ public class DialogSystem : Singleton<DialogSystem>
 
     private void Start()
     {
-        //textDialog = GameObject.Find("剧情框").GetComponent<TMP_Text>();
-        //textName = GameObject.Find("姓名框").GetComponent<TMP_Text>();
-        //imageTatsue = GameObject.Find("人物立绘").GetComponent<Image>();
-        //dialogArea = GameObject.Find("对话框");
+        
+
+        GameObject obj =  Resources.Load<GameObject>("对话系统UI");
+        obj = Instantiate(obj);
 
 
+
+        textDialog = GameObject.Find("剧情框").GetComponent<TMP_Text>();
+        textName = GameObject.Find("姓名框").GetComponent<TMP_Text>();
+        imageTatsue = GameObject.Find("立绘").GetComponent<Image>();
+        dialogArea = GameObject.Find("对话系统UI");
+
+
+        剧情.Init();
     }
 
     public void SetAndPlayStorys(List<StoryScript> newStorys)
@@ -137,9 +172,27 @@ public class DialogSystem : Singleton<DialogSystem>
         }
 
         string name = storys[storyPointer].nameText;
-        if (textDialog != null)
+        if (name != "")
         {
+            textName.transform.parent.gameObject.SetActive(true);
             textName.text = name;
+        }
+        else
+        {
+            textName.transform.parent.gameObject.SetActive(false);
+        }
+
+
+
+        string tatsueName = storys[storyPointer].tatsueName;
+        if (name != "")
+        {
+            imageTatsue.gameObject.SetActive(true);
+            imageTatsue .sprite =  Resources.Load<Sprite>($"立绘/{tatsueName}");
+        }
+        else
+        {
+            imageTatsue.gameObject.SetActive(false);
         }
 
 

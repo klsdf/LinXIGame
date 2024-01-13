@@ -287,8 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a15c8572ebfb3f43ab3877456edbd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  sceneName: "\u6218\u6597\u6D4B\u8BD5"
+  sceneName: "\u5F00\u5C40"
 --- !u!4 &121473639
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,7 +1133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &651763652
 Transform:
   m_ObjectHideFlags: 0
@@ -1162,6 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a43ebe4e7aaa64eb6c5111acf6c002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test1: []
 --- !u!1 &762643702
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,6 +57,7 @@ public abstract class BattleBase : MonoBehaviour
     private AudioSource audioSource;
   
     private Slider slider;
+    private 血条缓动 xuetiao;
 
     //被敌人攻击
     public void ProcessAttack(BattleBase enemyData) 
@@ -68,12 +69,14 @@ public abstract class BattleBase : MonoBehaviour
         //如果格挡成功了，那么就不会受到伤害
         if (isBlock())
         {
+            ShowDamageText(damage, DamageType.格挡);
             return;
         }
 
         if (attakcer.isCrit())
         {
             damage = BiggerThan0(attakcer.atk - defender.def)* attakcer.critDamage;
+            ShowDamageText(damage, DamageType.暴击);
         }
         else
         {
@@ -81,10 +84,9 @@ public abstract class BattleBase : MonoBehaviour
         }
 
         hp -= damage;
+        ShowDamageText(damage,DamageType.普通);
 
-        GameObject obj = Resources.Load<GameObject>("伤害跳字");
-        Instantiate(obj, transform.position, Quaternion.identity, transform);
-        obj.GetComponent<伤害跳字>().Init(damage);
+
 
 
         audioSource.Play();
@@ -96,10 +98,18 @@ public abstract class BattleBase : MonoBehaviour
         }
     }
 
+    private void ShowDamageText(float damage,DamageType damageType)
+    {
+        GameObject obj = Resources.Load<GameObject>("伤害跳字");
+        obj = Instantiate(obj, transform.position, Quaternion.identity, transform);
+        obj.GetComponent<伤害跳字>().Init(damage, damageType);
+    }
+
     private void updateUI()
     {
-        slider.maxValue = maxHp;
-        slider.value = hp;
+
+        xuetiao.SetHealth(hp/maxHp);
+        slider.value = (float)hp/(float)maxHp;
     }
 
     public bool isBlock()
@@ -133,11 +143,7 @@ public abstract class BattleBase : MonoBehaviour
     public void GetDamage(float damage)
     {
         hp -= damage;
-
-        GameObject obj =  Resources.Load<GameObject>("伤害跳字");
-        obj.GetComponent<伤害跳字>().Init(damage);
-        Instantiate(obj, transform.position,Quaternion.identity,transform);
-
+        ShowDamageText(damage,DamageType.普通);
         updateUI();
         if (hp <= 0)
         {
@@ -163,6 +169,13 @@ public abstract class BattleBase : MonoBehaviour
         {
             slider = test;
         }
+
+        血条缓动[] tempxuetiao = GetComponentsInChildren<血条缓动>();
+        foreach (血条缓动 temp in tempxuetiao)
+        {
+            xuetiao = temp;
+        }
+        
     }
     void Update()
     {
