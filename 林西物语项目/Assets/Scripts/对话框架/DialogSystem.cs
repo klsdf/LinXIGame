@@ -130,7 +130,7 @@ public class DialogSystem : Singleton<DialogSystem>
         textDialog = GameObject.Find("剧情框").GetComponent<TMP_Text>();
         textName = GameObject.Find("姓名框").GetComponent<TMP_Text>();
         imageTatsue = GameObject.Find("立绘").GetComponent<Image>();
-        dialogArea = GameObject.Find("对话系统UI");
+        dialogArea = GameObject.Find("对话系统UI(Clone)");
 
 
         剧情.Init();

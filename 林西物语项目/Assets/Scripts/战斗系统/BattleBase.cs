@@ -11,6 +11,11 @@ using UnityEngine.UI;
 
 public abstract class BattleBase : MonoBehaviour
 {
+    [SerializeField]
+    private CharacterBattleParameter characterParamBase;
+    private CharacterBattleParameter characterParam;
+
+
     public NPCType profession;//职业
 
     public BattleParty party;
@@ -177,6 +182,15 @@ public abstract class BattleBase : MonoBehaviour
         }
         
     }
+
+
+    private void Start()
+    {
+        //characterParam = ScriptableObject.CreateInstance<CharacterBattleParameter>();
+        //characterParam.Init(characterParamBase);
+    }
+
+
     void Update()
     {
      

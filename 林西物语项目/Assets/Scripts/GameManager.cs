@@ -20,7 +20,7 @@ public enum GameType
 
 public class GameManager : Singleton<GameManager>
 {
-    GameType gameType;
+    GameType gameType = GameType.游戏;
     private int moJIngNum =0;
 
     private int populationNum = 0;

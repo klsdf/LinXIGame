@@ -15,6 +15,13 @@ public enum 兵卡状态
     兵卡栏
 }
 
+public enum CardType
+{
+    
+}
+
+
+
 public class 兵卡 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
